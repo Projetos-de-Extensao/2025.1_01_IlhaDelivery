@@ -14,7 +14,7 @@ Esse repositório é para ser utilizado pelos grupos como um template inicial, d
 ## Alunos
 | Matrícula | Aluno |
 | -- | -- | 
-| xx/xxxxxxx | | xxx xxx xxx |
+| xx/xxxxxxx | xxx xxx xxx |
 | 202401000671 | Gabriel Couto Barros |
 | 202401583537 | Tiago Oliveira Macedo |
 | 202401000711  |  Diego Gode Bonani |
