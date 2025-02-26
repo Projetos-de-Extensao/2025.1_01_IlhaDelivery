@@ -12,7 +12,7 @@ Esse repositório é para ser utilizado pelos grupos como um template inicial, d
 **Código da Disciplina**: FGA0208-T01<br>
 
 ## Alunos
-|Matrícula | Aluno |
+| Matrícula | Aluno |
 | 202401000671 | Gabriel Couto Barros |
 | 202401583537 | Tiago Oliveira Macedo |
 | 202401000711  |  Diego Gode Bonani |
