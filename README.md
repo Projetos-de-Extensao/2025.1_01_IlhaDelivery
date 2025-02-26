@@ -16,7 +16,7 @@ Esse repositório é para ser utilizado pelos grupos como um template inicial, d
 | -- | -- |
 | 202401583537 | Tiago Oliveira Macedo |
 | 202401000711  |  Diego Gode Bonani |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 202403660059  |  Daniel de Jesus Teixeira |
 
 ## Sobre 
 Descreva o seu projeto em linhas gerais. 
