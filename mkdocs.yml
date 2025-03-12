@@ -1,4 +1,4 @@
-site_name: Documentação MkDocs
+site_name: Site MkDocs
 
 theme:
   name: readthedocs
