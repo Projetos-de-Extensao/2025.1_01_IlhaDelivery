@@ -25,6 +25,7 @@ Atualmente, existe um contêiner que poderia facilitar as entregas, porém seu a
 - Entrega por drone
 - Construir ums conexão terrestre (ponte, passagens,...)
 - Democratização do contêiner
+- Montar um site funcionável para o Ilha Delivery
 
 ### Proposta viável escolhida pelo grupo 
 
