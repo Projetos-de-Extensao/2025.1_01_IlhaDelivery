@@ -12,3 +12,21 @@ Esta pesquisa aborda um projeto de Back-End voltado para relatar um problema enf
 <p align = "justify">
 Atualmente, existe um contêiner que poderia facilitar as entregas, porém seu alto custo torna seu uso inviável para muitos moradores. Além disso, anteriormente havia um ponto de apoio que recebia pedidos via aplicativos de delivery e repassava aos moradores por meio do WhatsApp. No entanto, esse serviço foi desativado devido à dificuldade de gerenciamento.
 </p>
+
+### Principais soluções possíveis
+
+- Ilha Delivery
+- Contêiner
+- Balças que transportam os alimentos
+
+
+### Ideias de inovação
+
+- Entrega por drone
+- Construir ums conexão terrestre (ponte, passagens,...)
+- Democratização do contêiner
+
+### Proposta viável escolhida pelo grupo 
+
+
+
