@@ -19,10 +19,6 @@ A equipe se reuniu para debater ideias gerais sobre o projeto Ilha Delivery, com
  
 ## Perguntas
  
-### Brainstorm
-
-#### Versão 1.0
-
 ---
 
 ### 1. Qual o objetivo principal da aplicação?
