@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Documento de Arquitetura - Site MkDocs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Documento de Arquitetura";
+        var mkdocs_page_input_path = "modelagem\\das.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Site MkDocs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Base</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/5w2h/">5W2H</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/Brainstorm/">Brainstorm</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/Pesquisa/">Pesquisa</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/documento_de_visao/">Documento de Visão</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/entrevista/">Entrevista</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/mapa_mental/">Mapas Mentais</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/metodologia/">Metodologia</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../base/prototipo_alta_fidelidade/">Protótipo</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Interacao</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../interacao/interacao1/">Interação 1</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Modelagem</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Modelagem</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Documento de Arquitetura</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../diagrama_de_classes/">Diagrama de Classes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Util</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../util/doc_template/">Titulo do documento</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Site MkDocs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Modelagem</li>
+      <li class="breadcrumb-item active">Documento de Arquitetura</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="documento-de-arquitetura-de-software-das">Documento de Arquitetura de Software (DAS)</h1>
+<h1 id="nome-do-projeto">"Nome do Projeto"</h1>
+<h1 id="introducao">Introdução</h1>
+<h2 id="proposta">Proposta</h2>
+<p align = "justify">
+Este documento apresenta uma visão geral da arquitetura do sistema, utilizando diferentes visões arquiteturais para destacar diferentes aspectos do sistema. É utilizado para capturar as decisões arquiteturais significativas que fizeram parte do sistema.
+</p>
+
+<h2 id="escopo">Escopo</h2>
+<p align = "justify">
+A aplicação "XXXX" tem o objetivo fornecer...
+</p>
+
+<h2 id="definicoes-acronimos-e-abreviacoes">Definições, Acrônimos e Abreviações</h2>
+<ul>
+<li>MVC - </li>
+<li>MVT - </li>
+<li>SIGLA PARA O APP - Nome do Aplicativo</li>
+</ul>
+<h2 id="visao-geral">Visão Geral</h2>
+<p align = "justify">
+O Documento de Arquitetura de Software (DAS) trata-se de uma visão geral de toda a arquitetura do sistema, observando diferentes aspectos do mesmo. Neste documento serão abordadas as seguintes visões da aplicação TCM:
+</p>
+
+<ul>
+<li>Caso de Uso;</li>
+<li>Lógica;</li>
+<li>Implantação;</li>
+<li>Implementação;</li>
+<li>Dados;</li>
+</ul>
+<h1 id="representacao-arquitetural">Representação Arquitetural</h1>
+<h2 id="cliente-servidor">Cliente-Servidor</h2>
+<p align = "justify">
+Cliente-Servidor é um modelo de arquitetura...
+</p>
+
+<p>Cliente (Frontend):</p>
+<ul>
+<li>View: Consiste.....</li>
+</ul>
+<p>Servidor (Backend):</p>
+<ul>
+<li>
+<p>Controller: faz a conexão entre as camadas...</p>
+</li>
+<li>
+<p>Service: Responsável pela lógica...</p>
+</li>
+<li>
+<p>Model: Responsável pela persistência...</p>
+</li>
+</ul>
+<h1 id="objetivos-de-arquitetura-e-restricoes">Objetivos de Arquitetura e Restrições</h1>
+<h2 id="objetivos">Objetivos</h2>
+<p align = "justify">
+Segurança:
+   -
+Persistência:
+   - 
+Privacidade:
+   - Middlewares: Foi usado middlewares...
+Desempenho:
+   Requisições...
+Reusabilidade:
+   Componentes no Frontend...
+</p>
+
+<h2 id="restricoes">Restrições</h2>
+<p align = "justify">
+Tamanho da tela:...
+
+Portabilidade:...
+
+|IE|Edge|Firefox|Chrome|Safari|Googlebot|
+|--|----|-------|------|------|---------|
+|11 |>= 14|>= 52|>= 49|>= 10|Sim|
+
+Serviços: Os serviços oferecidos....
+
+Acesso a internet: A aplicação está limitada apenas a conexão com internet
+</p>
+
+<h2 id="ferramentas-utilizadas">Ferramentas Utilizadas</h2>
+<ul>
+<li>XXX: Ambiente de execução...</li>
+<li>XXXX: Linguagem de programação...
+Typescript: XXXX</li>
+<li>XXXX: XXXX</li>
+<li>XXX: XXXX</li>
+<li>XXXX: XXXX</li>
+<li>XXXX: XXXX</li>
+<li>XXXX: XXXX</li>
+<li>XXXXX: XXXX.</li>
+</ul>
+<h1 id="visao-de-caso-de-uso">Visão de Caso de Uso</h1>
+<p align = "justify">
+O primeiro caso de uso descreve a ação de um usuário que cria um torneio, sendo assim, ele é o manager do torneio. No segundo caso de uso descreve a ação de um usuário que é entra na aplicação com a intenção de entrar em torneios como jogador. Nos dois casos o usuário pode ser o mesmo, porém com funções diferentes.
+</p>
+
+<p><img alt="Caso de uso 1" src="../assets/Casos_de_uso/caso_de_uso_1.png" /></p>
+<p><img alt="Caso de uso 2" src="../assets/Casos_de_uso/caso_de_uso_2.png" /></p>
+<h1 id="visao-logica">Visão Lógica</h1>
+<h1 id="visao-de-implantacao">Visão de Implantação</h1>
+<p><img alt="Diagrama de Implantação" src="../assets/Diagrama_implantacao/diagrama_de_implantacao.png" /></p>
+<h1 id="visao-de-implementacao">Visão de Implementação</h1>
+<h2 id="visao-geral_1">Visão Geral</h2>
+<p><img alt="Diagrama de Componentes" src="../assets/Diagrama_componentes/diagrama_de_componentesV2.0.png" /></p>
+<h1 id="visao-de-dados">Visão de Dados</h1>
+<h2 id="modelo-entidade-relacionamento-mer">Modelo Entidade Relacionamento (MER)</h2>
+<h4 id="entidades-e-relacionamentos">Entidades e Relacionamentos:</h4>
+<h2 id="diagrama-entidade-relacionamento-der">Diagrama Entidade Relacionamento (DER)</h2>
+<h1 id="tamanho-e-desempenho">Tamanho e Desempenho</h1>
+<h1 id="qualidade">Qualidade</h1>
+</p>
+<h1 id="referencias-bibliograficas">Referências Bibliográficas</h1>
+<blockquote></blockquote>
+<h1 id="historico-de-versao">Histórico de Versão</h1>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>08/11/2020</td>
+<td>1.0</td>
+<td>Criada estrutura básica do documento</td>
+<td>xxx xxx, xxx xx, xxx xx, xxx xxx e xxx xxxx</td>
+</tr>
+<tr>
+<td>15/11/2020</td>
+<td>1.1</td>
+<td>Representação arquitetural e objetivos e restrições arquiteturais.</td>
+<td>Autores</td>
+</tr>
+<tr>
+<td>19/11/2020</td>
+<td>1.2</td>
+<td>Adição dos diagramas, visões, tamanho e desempenho e qualidade</td>
+<td>Autores</td>
+</tr>
+<tr>
+<td>20/11/2020</td>
+<td>1.3</td>
+<td>Adição da descrição de MER e DER</td>
+<td>Autores</td>
+</tr>
+<tr>
+<td>20/11/2020</td>
+<td>1.4</td>
+<td>Adição do tópico de qualidade</td>
+<td>Autores</td>
+</tr>
+<tr>
+<td>20/11/2020</td>
+<td>1.5</td>
+<td>Revisão</td>
+<td>Autores</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Modelagem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../diagrama_de_classes/" class="btn btn-neutral float-right" title="Diagrama de Classes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../diagrama_de_classes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
