@@ -68,6 +68,7 @@ A proposta do Ilha Delivery visa solucionar um problema real enfrentado pelos mo
 |------------|--------|--------------------------|-----------|
 | 26/03/2025 | 1.0    | Criação do documento      |  Gabriel Couto Barros |
 | 26/03/2025 | 1.0    | Criação do documento      |  Viktor Mayer Berruezo |
+| 26/03/2025 | 1.0    | Criação o mapa da ilha    |  Viktor Mayer Berruezo |
 
 
 
