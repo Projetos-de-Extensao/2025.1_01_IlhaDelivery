@@ -11,7 +11,7 @@ O propósito deste documento é fornecer uma visão geral sobre o projeto que se
 ## Descrição do Problema 
 
 <p align = "justify">
-Devido ao problema enfrentado pelos moradores da Ilha Primeira, que não têm acesso a serviços de entrega tradicionais por conta da falta de acesso terrestre. A solução proposta busca melhorar a viabilidade das entregas de alimentos na região e promover um serviço sustentável e acessível para a comunidade local. A falta de opções viáveis, como o contêiner de alto custo e a desativação do ponto de apoio anterior, reforça a necessidade urgente de uma solução digital mais eficiente e acessível.
+O problema enfrentado pelos moradores da Ilha Primeira, que não têm acesso a serviços de entrega tradicionais por conta da falta de acesso terrestre. A solução proposta busca melhorar a viabilidade das entregas de alimentos na região e promover um serviço sustentável e acessível para a comunidade local. A falta de opções viáveis, como o contêiner de alto custo e a desativação do ponto de apoio anterior, reforça a necessidade urgente de uma solução digital mais eficiente e acessível.
 </p>
 
 ### Problema
