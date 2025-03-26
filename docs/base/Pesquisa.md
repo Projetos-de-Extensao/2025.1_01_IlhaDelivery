@@ -61,7 +61,9 @@ A solução escolhida pelo grupo é a criação de um sistema digital integrado 
 A proposta do Ilha Delivery visa solucionar um problema real enfrentado pelos moradores da Ilha Primeira, promovendo um serviço inovador e acessível. Com a implementação da plataforma digital, espera-se proporcionar mais comodidade à comunidade, estimular o comércio local e aprimorar a logística de entrega na região.
 </p>
 
-![Mapa Ilha Primeira](/docs/imagens/mapa-ilha-primeira.png)
+### Visualização do mapa na Ilha Primeira
+[![Mapa Ilha Primeira](../assets/Mapa_Ilha_Primeira/mapa-ilha-primeira.png)](../assets/Mapa_Ilha_Primeira/mapa-ilha-primeira.png)
+
 
 
 
