@@ -1,12 +1,4 @@
-# TemplateBackEnd
-Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
-**!! Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(NomeDoProjeto). !!** 
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: 2024.1_PFE1_ProjetoPandora!!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
+# Ilha Delivery
 
 **Número do Grupo**: 01<br>
 **Código da Disciplina**: FGA0208-T01<br>
@@ -21,7 +13,7 @@ Esse repositório é para ser utilizado pelos grupos como um template inicial, d
 | 202403660059  |  Daniel de Jesus Teixeira |
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
+Desenvolvimento de um aplicativo web para entrega de produtos na Ilha Primeira
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em termos de interface e funcionamento.
