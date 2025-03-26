@@ -36,7 +36,6 @@ A solução escolhida pelo grupo é a criação de um sistema digital integrado 
 
 ### Objetivos do Projeto
 
-
 - Desenvolvimento de uma plataforma online (site ou aplicativo) para permitir a realização de pedidos de forma simples e acessível.
 
 - Melhoria na comunicação entre entregadores e moradores, minimizando falhas no repasse de pedidos.
@@ -65,9 +64,10 @@ A proposta do Ilha Delivery visa solucionar um problema real enfrentado pelos mo
 [![Mapa Ilha Primeira](../assets/Mapa_Ilha_Primeira/mapa-ilha-primeira.png)](../assets/Mapa_Ilha_Primeira/mapa-ilha-primeira.png)
 
 
-
-
-
+| Data       | Versão | Descrição                | Autor(es) |
+|------------|--------|--------------------------|-----------|
+| 26/03/2025 | 1.0    | Criação do documento      |  Gabriel Couto Barros |
+| 26/03/2025 | 1.0    | Criação do documento      |  Viktor Mayer Berruezo |
 
 
 
