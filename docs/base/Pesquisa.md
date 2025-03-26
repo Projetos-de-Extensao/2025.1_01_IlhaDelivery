@@ -45,7 +45,7 @@ A solução escolhida pelo grupo é a criação de um sistema digital integrado 
 
 - Parcerias com comércios locais e operadores de transporte, visando a sustentabilidade do serviço.
 
-- Recursos Necessários
+### Recursos Necessários
 
 - Infraestrutura Tecnológica: Servidores, banco de dados e desenvolvimento Back-End.
 
