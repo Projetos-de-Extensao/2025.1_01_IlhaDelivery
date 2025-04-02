@@ -39,10 +39,8 @@ O mapa mental é uma ficha de estudos que ajuda a dar uma visão geral do tema, 
 ## Referências
 > Mapa Mental Ilha delivery,  Disponível em: [https://www.....](https://www.canva.com/design/DAGje0dLwPI/hBX76X_Pn5fRdTO9fuMcbQ/edit)
  
-> Ferramentas para Mapas Mentais. Disponível em: https://www....
- 
-> Plataforma para usuários colaborar no desenho... Disponível em: https://...
- 
+> Ferramentas para Mapas Mentais. Disponível em: [https://www....](https://www.canva.com/)
+
 ## Versionamento
 | Data | Versão | Descrição | Autor(es) |
 | -- | -- | -- | -- |
