@@ -21,7 +21,8 @@ Foi levantado um ponto importante sobre o app e, assim, foi produzido o mapa men
  
 ### Mapa mental 1
  
-[Mapa mental][Mapa mental](!(https://github.com/user-attachments/assets/b99ab147-f01e-4196-b0c4-8f10dd25f379))
+[![Mapa mental Entrevista](![Mapa mental](https://github.com/user-attachments/assets/b99ab147-f01e-4196-b0c4-8f10dd25f379)
+)
 
  
  
