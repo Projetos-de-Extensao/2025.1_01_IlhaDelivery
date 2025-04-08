@@ -1,0 +1,62 @@
+@startuml DiagramaDeClasses_IlhaDelivery
+class Entrevistador {
+}
+
+class Domicilio {
+}
+
+class Cliente {
+}
+
+class Produto {
+}
+
+class Carrinho {  
+}
+
+class ItemCarrinho {  
+}
+
+class Pedido {  
+}
+
+class Entregador {
+}
+
+class Avaliacao {
+}
+
+class Rastreamento { 
+}
+
+
+enum CategoriaProduto {
+  REFEICAO
+  BEBIDA
+  SOBREMESA
+  OUTROS
+}
+
+enum StatusPedido {
+  PENDENTE
+  PREPARANDO
+  EM_TRANSPORTE
+  ENTREGUE
+  CANCELADO
+}
+
+enum FormaPagamento {
+  CREDITO
+  DEBITO
+  PIX
+  DINHEIRO
+}
+
+Cliente  --  Pedido : faz >
+Cliente  --  Avaliacao : escreve >
+Carrinho  --  ItemCarrinho : contém >
+Pedido  --  Carrinho : inclui >
+Pedido  --  Rastreamento : possui >
+Produto  --  Avaliacao : recebe >
+Entregador  --  Pedido : entrega >
+@enduml

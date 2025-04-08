@@ -1,0 +1,29 @@
+@startsalt Cadastro
+
+{
+{T
+  | **ILHA DELIVERY**         | [Início] [Pedidos] [Sobre] [Perfil] |
+}
+
+{T
+  | **Bem-vindo ao Ilha Delivery** |
+  | Cadastre-se para começar a usar o melhor serviço de entrega da Ilha Primeira. |
+}
+
+{+
+  **Nome completo**         | ["Digite seu nome completo"]
+  **E-mail**                | ["Digite seu e-mail"]
+  **Número de telefone**    | ["(xx) xxxxx-xxxx"]
+  **Senha**                 | ["********"]
+  **Confirme sua senha**    | ["********"]
+
+  [ <&check> Cadastrar ]
+
+  -- ou --
+
+  [ <&google> Entrar com Google ]
+}
+
+}
+
+@endsalt
