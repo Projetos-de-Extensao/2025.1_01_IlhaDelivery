@@ -48,7 +48,7 @@ A equipe se reuniu para debater ideias gerais sobre o projeto Ilha Delivery, com
 
 <b>Tiago</b> - Com o usuário logado, ele deverá ser capaz de selecionar seus produtos de maneira intuitiva e fácil, sem complicações.
 
-<b>Diego</b> - O cliente poderá também fazer login através de suas redes sociais para facilitar o processo e agilizar a adesão ao serviço.
+<b>Diego</b> - O cliente poderá também fazer login através de sua conta Google para facilitar o processo e agilizar a adesão ao serviço.
 
 <b>Daniel</b> - O cliente deverá confirmar o endereço de entrega no momento do cadastro para garantir que a localização será reconhecida corretamente no sistema.
 </p>
@@ -65,7 +65,7 @@ A equipe se reuniu para debater ideias gerais sobre o projeto Ilha Delivery, com
 
 <b>Tiago</b> - O produto pode ser visualizado com imagens, preços e descrição para que o cliente saiba exatamente o que está comprando, além de permitir customizações (por exemplo, escolher a quantidade ou adicionar ingredientes extras).
 
-<b>Diego</b> - O produto será armazenado no banco de dados com um sistema de gerenciamento que permitirá alterar o estoque e adicionar novas opções com facilidade.
+<b>Diego</b> - O produto será descrito pelo cliente em texto com uma descrição incluindo informações como quantidade, tamanho, preço, cor, uma imagem ou um link.
 
 ---
 
