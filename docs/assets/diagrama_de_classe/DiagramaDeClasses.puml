@@ -1,9 +1,4 @@
 @startuml DiagramaDeClasses_IlhaDelivery
-class Entrevistador {
-}
-
-class Domicilio {
-}
 
 class Cliente {
 }
@@ -27,6 +22,10 @@ class Avaliacao {
 }
 
 class Rastreamento { 
+}
+
+class Loja{
+
 }
 
 
@@ -56,7 +55,9 @@ Cliente  --  Pedido : faz >
 Cliente  --  Avaliacao : escreve >
 Carrinho  --  ItemCarrinho : contém >
 Pedido  --  Carrinho : inclui >
-Pedido  --  Rastreamento : possui >
+Pedido -- Notificacao : gera >
+Pedido  --  Rastreamento : possui >]
+Loja -- Produto : fornece >
 Produto  --  Avaliacao : recebe >
 Entregador  --  Pedido : entrega >
 @enduml
