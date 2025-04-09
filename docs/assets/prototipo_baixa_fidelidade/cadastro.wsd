@@ -14,8 +14,10 @@
   **Nome completo**         | ["Digite seu nome completo"]
   **E-mail**                | ["Digite seu e-mail"]
   **Número de telefone**    | ["(xx) xxxxx-xxxx"]
+  **Endereço**              | ["Digite seu endereço"]
   **Senha**                 | ["********"]
   **Confirme sua senha**    | ["********"]
+
 
   [ <&check> Cadastrar ]
 
