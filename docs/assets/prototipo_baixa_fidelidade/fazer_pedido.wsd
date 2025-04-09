@@ -1,0 +1,41 @@
+@startsalt FazerPedido
+{
+{T
+  | **ILHA DELIVERY**         | [Início] [Pedidos] [Sobre] [Perfil] |
+}
+
+{^
+  = Fazer Novo Pedido 
+  Monte seu pedido com os itens que desejar!
+}
+
+
+{
+  = Itens do Pedido 
+  Preencha os produtos que deseja adicionar ao seu pedido.
+}
+
+{+
+  🍽️ Produto 1:        ["Digite o nome do produto"]
+  🧾 Quantidade:        ["1", "2", "3", "4", "5"]
+}
+
+{+
+  🍽️ Produto 2:        ["Digite o nome do produto"]
+  🧾 Quantidade:        ["1", "2", "3", "4", "5"]
+}
+
+{+
+  🍽️ Produto 3:        ["Digite o nome do produto"]
+  🧾 Quantidade:        ["1", "2", "3", "4", "5"]
+}
+
+{+
+  📍 Endereço:       ["Rua Exemplo, 123 - Bairro"]
+  ☎️ Contato:        ["(xx) xxxxx-xxxx"]
+  💳 Pagamento:      ["Crédito", "Débito", "Pix", "Dinheiro"]
+
+  [ <&cart> Finalizar Pedido ]
+}
+}
+@endsalt
