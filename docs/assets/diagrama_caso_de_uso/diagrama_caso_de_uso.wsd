@@ -1,0 +1,42 @@
+@startuml Diagrama de caso de uso
+
+left to right direction
+skinparam packageStyle rectangle
+actor "Usuário" as usuário
+actor "Entregador" as entregador
+actor "Sistema" as sistema
+
+rectangle "Ilha Delivery" {
+  usecase "Validar Usuário" as UC01
+  usecase "Fazer pedido" as UC02
+  usecase "Realizar Pagamento" as UC03
+  usecase "Cartão débito" as UC04
+  usecase "Cartão crédito" as UC05
+  usecase "Pix" as UC06
+  usecase "Solicitar pedido (Para loja)" as UC07
+  usecase "Validar entregador" as UC08
+  usecase "Pegar pedido" as UC09
+  usecase "Entregar pedido" as UC10
+  usecase "Receber pedido" as UC11
+
+}
+
+usuário --> UC01
+usuário --> UC02
+usuário --> UC03
+usuário --> UC11
+entregador --> UC08
+entregador --> UC09
+entregador --> UC10
+sistema --> UC07
+
+
+
+UC03 --> UC04
+UC03 --> UC05
+UC03 --> UC06
+UC02 --> UC07
+UC10 --> UC11
+
+
+@enduml

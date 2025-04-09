@@ -1,0 +1,20 @@
+@startsalt EsqueciSenha
+{
+
+{T
+  | **ILHA DELIVERY**         | [Início] [Pedidos] [Sobre] [Perfil] |
+}
+
+{
+  = Recuperar Senha '
+  Confirme seu e-mail para receber as instruções de redefinição.
+}
+
+{+
+  E-mail cadastrado: ["seu@email.com"]
+
+  [ <&email-send> Enviar Instruções ]
+  Não recebeu o email? Clique novamente
+}
+}
+@endsalt
