@@ -1,6 +1,10 @@
-from django.urls import path
-from . import views
+from rest_framework.routers import DefaultRouter
+from .views import ProdutoViewSet, PedidoViewSet, AvaliacaoViewSet, ClienteViewSet
 
-urlpatterns = [
-    path('', views.home, name='home'),
-]
+router = DefaultRouter()
+router.register(r'pedidos', PedidoViewSet)
+router.register(r'produtos', ProdutoViewSet)
+router.register(r'avaliacoes', AvaliacaoViewSet)
+router.register(r'clientes', ClienteViewSet)
+
+urlpatterns = router.urls
