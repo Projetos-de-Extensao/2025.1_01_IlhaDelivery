@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
@@ -10,8 +9,7 @@ class Cliente(models.Model):
         max_length=11,
         unique=True,
         blank=True,
-        null=True,
-        validators=[RegexValidator(r'^\d{11}$', 'O CPF deve conter 11 dígitos')]
+        null=True
     )
 
     def __str__(self):
@@ -71,7 +69,7 @@ class StatusEntrega(models.Model):
 class Avaliacao(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True, blank=True)
-    nota = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    nota = models.PositiveIntegerField()
     comentario = models.TextField()
 
     def __str__(self):
