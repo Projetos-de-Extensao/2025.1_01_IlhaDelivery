@@ -7,6 +7,8 @@ from .models import(
     Entregador,
     ItemPedido,
     StatusEntrega,
+    Carrinho,
+    ItemCarrinho
 ) 
 
 
@@ -17,5 +19,9 @@ admin.site.register(Cliente)
 admin.site.register(Entregador)
 admin.site.register(ItemPedido)  
 admin.site.register(StatusEntrega)
+admin.site.register(Carrinho)
+admin.site.register(ItemCarrinho)
+
+
 
 

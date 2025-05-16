@@ -1,12 +1,8 @@
 from rest_framework import viewsets
 from .models import (
-    Produto,
-    Pedido,
-    Avaliacao,
-    Cliente,    
-    Entregador,
-    ItemPedido,
-    StatusEntrega,
+    Produto, Pedido, Avaliacao, Cliente,    
+    Entregador, ItemPedido, StatusEntrega,
+    Carrinho, ItemCarrinho
 )
 from .serializers import (
     ProdutoSerializer,
@@ -16,6 +12,8 @@ from .serializers import (
     EntregadorSerializer,
     ItemPedidoSerializer,
     StatusEntregaSerializer,
+    CarrinhoSerializer,
+    ItemCarrinhoSerializer
 )
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -52,4 +50,14 @@ class ItemPedidoViewSet(viewsets.ModelViewSet):
 class StatusEntregaViewSet(viewsets.ModelViewSet):
     queryset = StatusEntrega.objects.all()
     serializer_class = StatusEntregaSerializer
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+
+class CarrinhoViewSet(viewsets.ModelViewSet):
+    queryset = Carrinho.objects.all()
+    serializer_class = CarrinhoSerializer
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+
+class ItemCarrinhoViewSet(viewsets.ModelViewSet):
+    queryset = ItemCarrinho.objects.all()
+    serializer_class = ItemCarrinhoSerializer
     # permission_classes = [IsAuthenticatedOrReadOnly]
