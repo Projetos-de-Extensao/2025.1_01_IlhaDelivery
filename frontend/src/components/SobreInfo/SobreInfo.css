@@ -1,0 +1,74 @@
+/* Container principal */
+.about-container {
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem 0;
+  width: 100% ;
+}
+
+/* Título */
+.about-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #dc4646;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Texto descritivo */
+.about-text {
+  font-size: 1.2rem;
+  color: #ccc;
+  text-align: center;
+  max-width: 20rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+/* Destaque no texto */
+.highlight {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+/* Cards */
+.about-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.about-card {
+  background: #222;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  width: 250px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.about-card h3 {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.about-card p {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.about-card:hover {
+  background: #dc4646;
+  transform: scale(1.05);
+  color: white;
+}
+

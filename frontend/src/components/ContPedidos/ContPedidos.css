@@ -1,0 +1,144 @@
+/* Reset básico */
+body, h1, h2, h3, p, a, input, select, button {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    box-sizing: border-box;
+  }
+  
+  /* Página geral */
+  .pedidos-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fffafa;
+    border: 2px solid #ff4d4d;
+    border-radius: 10px;
+  }
+  
+  /* Cabeçalho */
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  header h2 {
+    color: #cc0000;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #b30000;
+    font-weight: bold;
+  }
+  
+  /* Seção novo pedido */
+  .novo-pedido {
+    border: 2px solid #ff6666;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom:2rem;
+    margin-top: 2rem;
+    background-color: #fff0f0;
+  }
+  
+  .novo-pedido h3 {
+    color: #cc0000;
+    margin-bottom: 5px;
+  }
+  
+  .novo-pedido p {
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .novo-pedido form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .novo-pedido label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #a30000;
+  }
+  
+  .novo-pedido input,
+  .novo-pedido select {
+    padding: 8px;
+    border: 1px solid #ffcccc;
+    border-radius: 5px;
+    margin-top: 4px;
+  }
+  
+  .novo-pedido button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .novo-pedido button:hover {
+    background-color: #cc0000;
+  }
+  
+  /* Meus pedidos */
+  .meus-pedidos h3 {
+    color: #cc0000;
+    margin-bottom: 5px;
+  }
+  
+  .meus-pedidos p {
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  .pedido {
+    border: 1px dashed #ff9999;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff8f8;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .pedido p {
+    margin-bottom: 10px;
+  }
+  
+  .pedido span {
+    float: right;
+    color: #888;
+    font-size: 0.9em;
+  }
+  
+  .pedido button {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    border: 2px solid;
+    background-color: white;
+    cursor: default;
+  }
+  
+  .entregue {
+    border-color: green;
+    color: green;
+  }
+  
+  .acaminho {
+    border-color: orange;
+    color: orange;
+  }
+  
+  .empreparo {
+    border-color: #cc0000;
+    color: #cc0000;
+  }
+  

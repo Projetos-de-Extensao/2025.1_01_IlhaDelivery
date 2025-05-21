@@ -1,0 +1,89 @@
+/* Reset básico */
+body, h1, h2, h3, p, a, input, button, label {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}
+
+/* Página */
+.perfil-page {
+  padding: 1rem;
+  margin-top: 10rem;
+  background-color: #fffafa;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Caixa de perfil */
+.perfil-box {
+  background-color: #fff0f0;
+  border: 2px solid #ff6666;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.perfil-box h3 {
+  color: #cc0000;
+  margin-bottom: 0.5rem;
+}
+
+.perfil-box p {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Agrupamento label + input */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.form-label {
+  min-width: 100px;
+  font-weight: bold;
+  color: #a30000;
+  text-align: right;
+}
+
+/* Estilo dos inputs */
+input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #ffcccc;
+  border-radius: 25px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+  font-size: 1rem;
+  text-align: center;
+}
+
+input:focus {
+  border-color: #ff4d4d;
+  outline: none;
+}
+
+/* Botão */
+.perfil-box button {
+  margin-top: 1.5rem;
+  padding: 14px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.perfil-box button:hover {
+  background-color: #cc0000;
+}
+
