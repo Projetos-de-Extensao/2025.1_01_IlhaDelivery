@@ -36,6 +36,7 @@ class Pedido(models.Model):
     ]
     cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE)
     entregador = models.ForeignKey("Entregador", on_delete=models.SET_NULL, null=True, blank=True)
+    descricao = models.TextField(default="Sem descrição")
     data_pedido = models.DateTimeField(auto_now_add=True)
     observacoes = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pendente')
