@@ -10,9 +10,11 @@ from .models import(
     Carrinho,
     ItemCarrinho
 ) 
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'preco', 'descricao', 'disponivel')
+    list_filter = ('nome', 'preco', 'disponivel')  # ajuste 'categoria' para um campo existente em Produto
 
-
-admin.site.register(Produto)
+admin.site.register(Produto, ProdutoAdmin)
 admin.site.register(Pedido)
 admin.site.register(Avaliacao)
 admin.site.register(Cliente)
