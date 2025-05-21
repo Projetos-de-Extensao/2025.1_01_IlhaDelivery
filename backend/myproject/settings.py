@@ -25,15 +25,13 @@ SECRET_KEY = 'django-insecure-%$o#q=8$j^t9r85&@^7m2iwu)%!@htd6m2a4#f&7h894tm2-%$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.github.dev',      # Isso cobre o domínio da Codespace
-    'https://localhost:8000',    # Se você estiver testando localmente
+ALLOWED_HOSTS = []
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+       "http://localhost:8000",  # Exemplo para um app local
 ]
-
-
-ALLOWED_HOSTS = ['*']
-
-
 
 # Application definition
 
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'myproject.urls'
