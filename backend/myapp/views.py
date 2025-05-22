@@ -4,12 +4,14 @@ from .models import (
     Cliente,
     Entregador,
     ItemPedido,
+    StatusPedido,
 )
 from .serializers import (
     PedidoSerializer,
     ClienteSerializer,
     EntregadorSerializer,
     ItemPedidoSerializer,
+    StatusPedidoSerializer,
 )
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -35,3 +37,8 @@ class ItemPedidoViewSet(viewsets.ModelViewSet):
     serializer_class = ItemPedidoSerializer
     # permission_classes = [IsAuthenticatedOrReadOnly]
 
+
+class StatusPedidoViewSet(viewsets.ModelViewSet):
+    queryset = StatusPedido.objects.all()
+    serializer_class = StatusPedidoSerializer
+    # permission_classes = [IsAuthenticatedOrReadOnly]

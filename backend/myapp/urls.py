@@ -4,6 +4,7 @@ from .views import (
     ClienteViewSet,
     EntregadorViewSet,    
     ItemPedidoViewSet,
+    StatusPedidoViewSet,
 )
 
 router = DefaultRouter()
@@ -11,6 +12,7 @@ router.register(r'pedidos', PedidoViewSet)
 router.register(r'clientes', ClienteViewSet)
 router.register(r'entregadores', EntregadorViewSet)
 router.register(r'itens', ItemPedidoViewSet)
+router.register(r'status', StatusPedidoViewSet)
 
 
 

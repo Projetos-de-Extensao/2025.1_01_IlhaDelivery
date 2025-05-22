@@ -5,6 +5,7 @@ from myapp.models import(
     Cliente,
     Entregador,
     ItemPedido,
+    StatusPedido,
 ) 
 
 class PedidoSerializer(serializers.ModelSerializer):
@@ -29,4 +30,11 @@ class ItemPedidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemPedido
         fields = ['id', 'pedido', 'produto', 'quantidade']
+        read_only_fields = ['id']
+
+
+class StatusPedidoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StatusPedido
+        fields = ['id', 'pedido', 'status']
         read_only_fields = ['id']

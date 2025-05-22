@@ -28,18 +28,11 @@ class Entregador(models.Model):
 
 
 class Pedido(models.Model):
-    STATUS_CHOICES = [
-        ('Pendente', 'Pendente'),
-        ('Pago', 'Pago'),
-        ('Em Transporte', 'Em Transporte'),
-        ('Entregue', 'Entregue'),
-    ]
     cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE)
     entregador = models.ForeignKey("Entregador", on_delete=models.SET_NULL, null=True, blank=True)
     descricao = models.TextField(default="Sem descrição")
     data_pedido = models.DateTimeField(auto_now_add=True)
     observacoes = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pendente')
     pago = models.BooleanField(default=False)
 
     def confirmar_pagamento(self):
@@ -67,4 +60,18 @@ class ItemPedido(models.Model):
 
     def __str__(self):
         return f"{self.quantidade}x {self.produto.nome}"
+    
+class StatusPedido(models.Model):
+    STATUS_CHOICES = [
+        ('Pendente', 'Pendente'),
+        ('Pago', 'Pago'),
+        ('Em Transporte', 'Em Transporte'),
+        ('Entregue', 'Entregue'),
+    ]
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='status_pedido')
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES)
+    data_status = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Status do Pedido #{self.pedido.id} - {self.status}"
 
