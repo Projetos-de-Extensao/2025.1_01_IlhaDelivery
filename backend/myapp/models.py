@@ -39,20 +39,18 @@ class Pedido(models.Model):
         if self.pago:
             raise ValueError("O pedido já foi pago.")
         self.pago = True
-        self.status = 'Pago'
-        self.save()
+        StatusPedido.objects.create(pedido=self, status='Pago')
 
     def confirmar_entrega(self):
+        latest_status = self.status_pedido.order_by('-data_status').first()
         if not self.pago:
             raise ValueError("Pedido não pode ser entregue sem pagamento.")
-        if self.status != 'Em Transporte':
+        if latest_status.status != 'Em Transporte':
             raise ValueError("Pedido não está em transporte.")
-        self.status = 'Entregue'
-        self.save()
+        StatusPedido.objects.create(pedido=self, status='Entregue')
 
     def __str__(self):
-        return f"Pedido #{self.id} - "
-
+        return f"Pedido #{self.id}"
 
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='itens')
