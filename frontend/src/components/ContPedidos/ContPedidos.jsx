@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ContPedidos.css";
+import { getPedidos } from "../../services/api";
 
 function ContPedidos() {
+  const [pedidos, setPedidos] = useState([]);
+
+  useEffect(() => {
+    getPedidos()
+      .then((response) => setPedidos(response.data))
+      .catch((error) => console.error("Erro ao buscar pedidos:", error));
+  }, []);
+
   return (
     <div className="pedidos-page">
-
       <section className="novo-pedido">
         <h3>Fazer Novo Pedido </h3>
         <p>Escolha o que deseja e envie seu pedido!</p>
@@ -12,10 +20,8 @@ function ContPedidos() {
           <label>Tipo do Produto:</label>
           <input type="text" placeholder="Digite o nome do produto" />
 
-          
           <label> Descreva o seu produto:</label>
-          <input type="text" placeholder="Estabelecimento, valor, quantidade, etc."/>
-
+          <input type="text" placeholder="Estabelecimento, valor, quantidade, etc." />
 
           <label>Pagamento:</label>
           <select>
@@ -33,20 +39,25 @@ function ContPedidos() {
         <h3>Meus Pedidos</h3>
         <p>Acompanhe seus pedidos em andamento e anteriores.</p>
 
-        <div className="pedido">
-          <p><strong>Pedido #1032</strong> Produto: Hambúrguer Artesanal <span>Data: 08/04/2025</span></p>
-          <button className="entregue">✓ Entregue</button>
-        </div>
-
-        <div className="pedido">
-          <p><strong>Pedido #1033</strong> Produto: Pizza Portuguesa <span>Data: 08/04/2025</span></p>
-          <button className="acaminho">🕒 A caminho</button>
-        </div>
-
-        <div className="pedido">
-          <p><strong>Pedido #1034</strong> Produto: Combo Sushi + Refri <span>Data: 08/04/2025</span></p>
-          <button className="empreparo">🛠 Em preparo</button>
-        </div>
+        {pedidos.length === 0 ? (
+          <p>Nenhum pedido encontrado.</p>
+        ) : (
+          pedidos.map((pedido) => (
+            <div className="pedido" key={pedido.id}>
+              <p>
+                <strong>Pedido #{pedido.id}</strong> Produto: {pedido.descricao}{" "}
+                <span>Data: {pedido.data_pedido}</span>
+              </p>
+              <button className="pedido">
+                {pedido.status === "Entregue"
+                  ? <button className="entregue">✓ Entregue</button>
+                  : pedido.status === "A caminho"
+                  ? <button className="acaminho">🕒 A caminho</button>
+                  : <button className="empreparo">🛠 Em preparo</button>}
+              </button>
+            </div>
+          ))
+        )}
       </section>
     </div>
   );

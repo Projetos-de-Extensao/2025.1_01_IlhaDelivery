@@ -11,7 +11,7 @@ from myapp.models import(
 class PedidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pedido
-        fields = ['id', 'cliente', 'entregador', 'data_pedido', 'observacoes']
+        fields = ['id', 'cliente', 'entregador', 'data_pedido', 'observacoes', 'descricao', 'pago']
         read_only_fields = ['id', 'data_pedido']
 
 class ClienteSerializer(serializers.ModelSerializer):
