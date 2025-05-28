@@ -41,4 +41,12 @@ class ItemPedidoViewSet(viewsets.ModelViewSet):
 class StatusPedidoViewSet(viewsets.ModelViewSet):
     queryset = StatusPedido.objects.all()
     serializer_class = StatusPedidoSerializer
+    def get_queryset(self):
+        queryset = StatusPedido.objects.all()
+
+        status = self.request.query_params.get('status')
+        if status in [choice[0] for choice in StatusPedido.STATUS_CHOICES]:
+            queryset = queryset.filter(status=status)
+
+        return queryset
     # permission_classes = [IsAuthenticatedOrReadOnly]
