@@ -1,6 +1,8 @@
 # app/models.py
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+
 
 class Cliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -34,6 +36,26 @@ class Pedido(models.Model):
     data_pedido = models.DateTimeField(auto_now_add=True)
     observacoes = models.TextField(blank=True, null=True)
     pago = models.BooleanField(default=False)
+
+    def clean(self):
+        # Não permitir pedido sem descrição
+        if not self.descricao or self.descricao.strip() == "" or self.descricao == "Sem descrição":
+            raise ValidationError("O pedido deve ter uma descrição.")
+
+        # Não permitir pedido não pago
+        if not self.pago:
+            raise ValidationError("O pedido deve estar pago para ser enviado.")
+        
+        pedidos_abertos = Pedido.objects.filter(cliente=self.cliente, pago=False)
+        if self.pk:
+            pedidos_abertos = pedidos_abertos.exclude(pk=self.pk)
+        if pedidos_abertos.exists() and not self.pago:
+            raise ValidationError("Já existe um pedido em aberto para este cliente.")
+
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Garante que as validações sejam executadas
+        super().save(*args, **kwargs)
 
     def confirmar_pagamento(self):
         if self.pago:
