@@ -6,7 +6,15 @@ from myapp.models import(
     Entregador,
     ItemPedido,
     StatusPedido,
+    Produto,
 ) 
+
+
+class ProdutoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Produto
+        fields = ['id', 'nome', 'descricao', 'preco']
+        read_only_fields = ['id', 'descricao']  # Descrição pode ser opcional, mas o ID é sempre somente leitura
 
 class PedidoSerializer(serializers.ModelSerializer):
     class Meta:

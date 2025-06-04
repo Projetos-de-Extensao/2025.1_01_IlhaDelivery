@@ -5,9 +5,11 @@ from .views import (
     EntregadorViewSet,    
     ItemPedidoViewSet,
     StatusPedidoViewSet,
+    ProdutoViewSet,
 )
 
 router = DefaultRouter()
+router.register(r'produtos', ProdutoViewSet)
 router.register(r'pedidos', PedidoViewSet)
 router.register(r'clientes', ClienteViewSet)
 router.register(r'entregadores', EntregadorViewSet)

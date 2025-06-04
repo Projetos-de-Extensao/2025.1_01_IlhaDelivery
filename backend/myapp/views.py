@@ -5,6 +5,7 @@ from .models import (
     Entregador,
     ItemPedido,
     StatusPedido,
+    Produto,
 )
 from .serializers import (
     PedidoSerializer,
@@ -12,9 +13,15 @@ from .serializers import (
     EntregadorSerializer,
     ItemPedidoSerializer,
     StatusPedidoSerializer,
+    ProdutoSerializer,
 )
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+
+class ProdutoViewSet(viewsets.ModelViewSet):
+    queryset = Produto.objects.all()
+    serializer_class = ProdutoSerializer
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
