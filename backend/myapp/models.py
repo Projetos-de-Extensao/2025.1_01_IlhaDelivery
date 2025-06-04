@@ -37,20 +37,29 @@ class Pedido(models.Model):
     observacoes = models.TextField(blank=True, null=True)
     pago = models.BooleanField(default=False)
 
-    def clean(self):
-        # Não permitir pedido sem descrição
-        if not self.descricao or self.descricao.strip() == "" or self.descricao == "Sem descrição":
-            raise ValidationError("O pedido deve ter uma descrição.")
 
-        # Não permitir pedido não pago
-        if not self.pago:
-            raise ValidationError("O pedido deve estar pago para ser enviado.")
+    def clean(self):
+        # Não permitir pedido sem descrição (se você ainda quiser esta validação, ajuste-a se 'descricao' tiver um default problemático)
+        # Exemplo: se descricao for obrigatória e não tiver default
+        # if not self.descricao or self.descricao.strip() == "":
+        #     raise ValidationError({"descricao": "A descrição do pedido é obrigatória."})
+
+        # REMOVA OU COMENTE A VALIDAÇÃO ABAIXO:
+        # if not self.pago:
+        #     raise ValidationError("O pedido deve estar pago para ser enviado.")
         
-        pedidos_abertos = Pedido.objects.filter(cliente=self.cliente, pago=False)
-        if self.pk:
-            pedidos_abertos = pedidos_abertos.exclude(pk=self.pk)
-        if pedidos_abertos.exists() and not self.pago:
-            raise ValidationError("Já existe um pedido em aberto para este cliente.")
+        # Validação de cliente com pedido em aberto (esta pode ser mantida se desejado)
+        # Assegure-se que self.cliente não é None aqui se o campo cliente puder ser nulo temporariamente.
+        if self.cliente and not self.pago: # Verifica se self.cliente existe
+            # Apenas para novos pedidos não pagos (se self.pk não existe)
+            if not self.pk:
+                pedidos_abertos_do_cliente = Pedido.objects.filter(cliente=self.cliente, pago=False)
+                if pedidos_abertos_do_cliente.exists():
+                    raise ValidationError(
+                        f"O cliente {self.cliente.nome} já possui um pedido em aberto. "
+                        "Finalize ou pague o pedido existente antes de criar um novo."
+                    )
+        super().clean() 
 
 
     def save(self, *args, **kwargs):
@@ -75,39 +84,19 @@ class Pedido(models.Model):
         return f"Pedido #{self.id}"
 
 
-class Produto(models.Model): # NOVO MODELO
-    nome = models.CharField(max_length=200)
-    descricao = models.TextField(blank=True, null=True)
-    preco = models.DecimalField(max_digits=10, decimal_places=2)
-    # Adicione outros campos relevantes para um produto,
-    # como estoque, imagem, categoria, etc.
-
-    def __str__(self):
-        return self.nome
-
-class ItemPedido(models.Model):
-    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='itens')
-    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, null=True, blank=True) # ADICIONADO - PROTECT evita que o produto seja deletado se estiver em um item de pedido
-    quantidade = models.PositiveIntegerField(default=1) # Adicionado default=1, se fizer sentido
-
-    def __str__(self):
-        return f"{self.quantidade}x {self.produto.nome}"
-
-    @property
-    def subtotal(self):
-        return self.produto.preco * self.quantidade
-    
+# myapp/models.py
 class StatusPedido(models.Model):
     STATUS_CHOICES = [
         ('Pendente', 'Pendente'),
         ('Pago', 'Pago'),
-        ('Em Transporte', 'Em Transporte'),
+        ('Em Preparo', 'Em Preparo'), # Adicionado "Em Preparo" para corresponder ao HTML
+        ('Em Transporte', 'A caminho'), # "A caminho" como no HTML
         ('Entregue', 'Entregue'),
+        ('Cancelado', 'Cancelado'), # Opcional
     ]
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='status_pedido')
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     data_status = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Status do Pedido #{self.pedido.id} - {self.status}"
-
+        return f"Status do Pedido #{self.pedido.id} - {self.get_status_display()}"

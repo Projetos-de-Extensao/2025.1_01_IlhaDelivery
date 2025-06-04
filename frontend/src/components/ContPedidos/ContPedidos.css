@@ -70,7 +70,10 @@ body, h1, h2, h3, p, a, input, select, button {
     border: 1px solid #ffcccc;
     border-radius: 5px;
     margin-top: 4px;
+    color: #000; /* <-- Adicione esta linha */
+    background-color: #fff; /* opcional, para garantir fundo claro */
   }
+
   
   .novo-pedido button {
     margin-top: 20px;
