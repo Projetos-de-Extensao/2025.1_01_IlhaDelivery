@@ -74,12 +74,28 @@ class Pedido(models.Model):
     def __str__(self):
         return f"Pedido #{self.id}"
 
+
+class Produto(models.Model): # NOVO MODELO
+    nome = models.CharField(max_length=200)
+    descricao = models.TextField(blank=True, null=True)
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    # Adicione outros campos relevantes para um produto,
+    # como estoque, imagem, categoria, etc.
+
+    def __str__(self):
+        return self.nome
+
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='itens')
-    quantidade = models.PositiveIntegerField()
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT) # ADICIONADO - PROTECT evita que o produto seja deletado se estiver em um item de pedido
+    quantidade = models.PositiveIntegerField(default=1) # Adicionado default=1, se fizer sentido
 
     def __str__(self):
         return f"{self.quantidade}x {self.produto.nome}"
+
+    @property
+    def subtotal(self):
+        return self.produto.preco * self.quantidade
     
 class StatusPedido(models.Model):
     STATUS_CHOICES = [
