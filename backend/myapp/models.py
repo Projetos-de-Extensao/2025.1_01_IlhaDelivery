@@ -87,7 +87,7 @@ class Produto(models.Model): # NOVO MODELO
 
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='itens')
-    produto = models.ForeignKey(Produto, on_delete=models.PROTECT) # ADICIONADO - PROTECT evita que o produto seja deletado se estiver em um item de pedido
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, null=True, blank=True) # ADICIONADO - PROTECT evita que o produto seja deletado se estiver em um item de pedido
     quantidade = models.PositiveIntegerField(default=1) # Adicionado default=1, se fizer sentido
 
     def __str__(self):
