@@ -30,28 +30,24 @@ class Entregador(models.Model):
 
 
 class Pedido(models.Model):
+    FORMAS_PAGAMENTO_CHOICES = [
+        ('Crédito', 'Crédito'),
+        ('Débito', 'Débito'),
+        ('Pix', 'Pix'),
+        ('Dinheiro', 'Dinheiro'),
+    ]
+
     cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE)
     entregador = models.ForeignKey("Entregador", on_delete=models.SET_NULL, null=True, blank=True)
-    descricao = models.TextField(default="Sem descrição")
+    descricao = models.TextField(blank=True, null=True) # Mantendo como estava
     data_pedido = models.DateTimeField(auto_now_add=True)
-    observacoes = models.TextField(blank=True, null=True)
+    observacoes = models.TextField(blank=True, null=True) # Pode ser usado para outras observações
     pago = models.BooleanField(default=False)
-
+    produto = models.CharField(max_length=255, blank=True, null=True)  # Adicionado para manter compatibilidade com o HTML
+    forma_pagamento = models.CharField(max_length=50,choices=FORMAS_PAGAMENTO_CHOICES,blank=True, null=True)
 
     def clean(self):
-        # Não permitir pedido sem descrição (se você ainda quiser esta validação, ajuste-a se 'descricao' tiver um default problemático)
-        # Exemplo: se descricao for obrigatória e não tiver default
-        # if not self.descricao or self.descricao.strip() == "":
-        #     raise ValidationError({"descricao": "A descrição do pedido é obrigatória."})
-
-        # REMOVA OU COMENTE A VALIDAÇÃO ABAIXO:
-        # if not self.pago:
-        #     raise ValidationError("O pedido deve estar pago para ser enviado.")
-        
-        # Validação de cliente com pedido em aberto (esta pode ser mantida se desejado)
-        # Assegure-se que self.cliente não é None aqui se o campo cliente puder ser nulo temporariamente.
-        if self.cliente and not self.pago: # Verifica se self.cliente existe
-            # Apenas para novos pedidos não pagos (se self.pk não existe)
+        if self.cliente and not self.pago: 
             if not self.pk:
                 pedidos_abertos_do_cliente = Pedido.objects.filter(cliente=self.cliente, pago=False)
                 if pedidos_abertos_do_cliente.exists():

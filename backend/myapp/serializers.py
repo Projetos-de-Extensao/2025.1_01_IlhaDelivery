@@ -42,9 +42,9 @@ class PedidoSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'cliente', 'cliente_id', 'entregador', 'entregador_id',
             'descricao', 'data_pedido', 'observacoes', 'pago',
-            'status_historico', 'status_atual'
+            'status_historico', 'status_atual', 'forma_pagamento', 'produto'
         ]
-        read_only_fields = ['id', 'data_pedido', 'pago']
+        read_only_fields = ['id', 'data_pedido', 'pago', 'cliente',]
 
     def get_status_atual(self, obj):
         latest_status_obj = obj.status_pedido.order_by('-data_status').first()

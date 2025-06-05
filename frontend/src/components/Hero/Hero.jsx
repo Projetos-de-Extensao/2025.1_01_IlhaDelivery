@@ -9,8 +9,7 @@ function Hero() {
           <p>Faça seu pedido!</p>
 
           <div className="hero-actions">
-            <a href="/cadastro" className="hero-btn primary">Criar Conta</a>
-            <a href="/login" className="hero-btn secondary">Já tenho conta</a>
+            <a href="/login" className="hero-btn secondary">Entrar na conta minha conta </a>
           </div>
         </div>
       </div>

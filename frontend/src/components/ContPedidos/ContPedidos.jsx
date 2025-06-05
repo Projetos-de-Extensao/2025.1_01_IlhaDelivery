@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from 'react'; // 👈 Certifique-se de que useEffect está importado
+import React, { useState, useEffect } from 'react';
 import axios from '../../axios'; // Ou a sua configuração do axios
 import './ContPedidos.css';
 
 function ContPedidos() {
-    // Seus estados existentes:
-    const [tipoProdutoInput, setTipoProdutoInput] = useState('');
+    const [produtoInput, setProdutoInput] = useState(''); // Usado para "Tipo do Produto"
     const [descricaoProdutoInput, setDescricaoProdutoInput] = useState('');
     const [pagamentoSelecionado, setPagamentoSelecionado] = useState('Crédito');
     const [pedidos, setPedidos] = useState([]);
+    const [observacoesDoPedido, setObservacoesDoPedido] = useState('');
     const [selectedClienteId, setSelectedClienteId] = useState(4); // ID do cliente
 
     const fetchPedidosCliente = async () => {
-        // Sua função fetchPedidosCliente (sem alterações aqui, ela já está boa)
-        // A guarda if (!selectedClienteId && selectedClienteId !== 0) pode ser removida
-        // se o backend sempre filtra pelo usuário do token e selectedClienteId não é usado na URL de GET.
-        // Para este exemplo, vamos manter como está, assumindo que selectedClienteId = 4 é sempre válido.
         if (!selectedClienteId && selectedClienteId !== 0) {
             console.log("Nenhum cliente selecionado, não buscando pedidos.");
             return;
         }
         try {
-            console.log("Buscando pedidos para o cliente ID:", selectedClienteId); // Adicionado log
-            const response = await axios.get(`/pedidos/`);
+            console.log("Buscando pedidos para o cliente ID:", selectedClienteId);
+            const response = await axios.get(`/pedidos/`); // Assumindo que a API filtra pelo usuário logado ou usa selectedClienteId no backend se necessário
             const data = response.data;
-            console.log("Pedidos recebidos:", data); // Adicionado log
+            console.log("Pedidos recebidos:", data);
 
             if (data && Array.isArray(data.results)) {
                 setPedidos(data.results);
@@ -39,26 +35,30 @@ function ContPedidos() {
         }
     };
 
-    // 👇 ADICIONE ESTE useEffect AQUI 👇
     useEffect(() => {
         console.log("Componente ContPedidos montado. Buscando pedidos iniciais...");
-        fetchPedidosCliente(); // Chama a função para buscar os pedidos
+        fetchPedidosCliente();
     }, []); // O array de dependências vazio [] faz este efeito rodar UMA VEZ após a montagem.
 
     const handleSubmitNovoPedido = async (event) => {
         event.preventDefault();
-        if (!tipoProdutoInput.trim()) {
+        if (!produtoInput.trim()) {
             alert("Por favor, informe o tipo do produto.");
             return;
         }
+        if (!descricaoProdutoInput.trim()) { // Nova validação para descrição
+            alert("Por favor, descreva o seu produto.");
+            return;
+        }
 
-        const descricaoCompleta = `Produto: ${tipoProdutoInput}. Detalhes Adicionais: ${descricaoProdutoInput || 'N/A'}`;
-        const observacoesDoPedido = `Método de pagamento: ${pagamentoSelecionado}.`;
+        const payloadObservacoes = observacoesDoPedido.trim() || 'N/A'; // Envia 'N/A' se vazio
 
         const pedidoPayload = {
             cliente_id: selectedClienteId,
-            descricao: descricaoCompleta,
-            observacoes: observacoesDoPedido,
+            produto: produtoInput.trim(), // Campo para o tipo/nome do produto
+            descricao: descricaoProdutoInput.trim(), // Campo para a descrição detalhada
+            observacoes: payloadObservacoes,
+            forma_pagamento: pagamentoSelecionado,
         };
 
         console.log("Payload que será enviado:", JSON.stringify(pedidoPayload, null, 2));
@@ -67,20 +67,15 @@ function ContPedidos() {
             const response = await axios.post('/pedidos/', pedidoPayload);
             console.log("Pedido criado:", response.data);
             alert("Pedido enviado com sucesso!");
-            setTipoProdutoInput('');
+            setProdutoInput(''); 
             setDescricaoProdutoInput('');
+            setObservacoesDoPedido('');
             setPagamentoSelecionado('Crédito');
-            fetchPedidosCliente(); // Rebusca os pedidos para atualizar a lista
+            fetchPedidosCliente(); 
         } catch (error) {
             console.error("Erro ao criar novo pedido:", error.response ? error.response.data : error.message);
-            // A linha abaixo é onde você pega o HTML do erro 500
-            const errorMessage = error.response?.data?.detail || JSON.stringify(error.response?.data) || error.message;
-            // Se for uma string HTML longa (erro 500 do Django), podemos simplificar o alerta
-            if (typeof errorMessage === 'string' && errorMessage.toLowerCase().includes('</html>')) {
-                alert("Falha ao enviar pedido: Ocorreu um erro no servidor. Verifique o console do navegador e o terminal do Django para mais detalhes.");
-            } else {
-                alert("Falha ao enviar pedido: " + errorMessage);
-            }
+            alert("Falha ao criar pedido: " + (error.response?.data?.error || error.message));
+
         }
     };
 
@@ -96,23 +91,24 @@ function ContPedidos() {
         }
     };
 
-    // Seu JSX existente para o return:
     return (
         <div className="pedidos-page">
             <section className="novo-pedido">
                 <h3>Fazer Novo Pedido</h3>
                 <p>Escolha o que deseja e envie seu pedido!</p>
                 <form onSubmit={handleSubmitNovoPedido}>
-                    <label htmlFor="tipoProduto">Tipo do Produto:</label>
+                    {/* Campo: Tipo do Produto */}
+                    <label htmlFor="produtoInput">Tipo do Produto:</label>
                     <input
-                        id="tipoProduto"
+                        id="produtoInput"
                         type="text"
                         placeholder="Digite o nome do produto"
-                        value={tipoProdutoInput}
-                        onChange={(e) => setTipoProdutoInput(e.target.value)}
+                        value={produtoInput}
+                        onChange={(e) => setProdutoInput(e.target.value)}
                         required
                     />
 
+                    {/* Campo: Descreva o seu produto */}
                     <label htmlFor="descricaoProduto">Descreva o seu produto:</label>
                     <input
                         id="descricaoProduto"
@@ -120,8 +116,20 @@ function ContPedidos() {
                         placeholder="Estabelecimento, valor, quantidade, etc."
                         value={descricaoProdutoInput}
                         onChange={(e) => setDescricaoProdutoInput(e.target.value)}
+                        required 
                     />
 
+                    {/* Campo: Observações do Pedido */}
+                    <label htmlFor="observacoes">Observações do Pedido:</label>
+                    <input
+                        id="observacoes"
+                        type="text"
+                        placeholder="Alguma observação para o pedido? (opcional)"
+                        value={observacoesDoPedido}
+                        onChange={(e) => setObservacoesDoPedido(e.target.value)}
+                    />
+
+                    {/* Campo: Pagamento */}
                     <label htmlFor="pagamento">Pagamento:</label>
                     <select
                         id="pagamento"
@@ -149,11 +157,16 @@ function ContPedidos() {
                         <div className="pedido" key={pedido.id}>
                             <p>
                                 <strong>Pedido #{pedido.id}</strong> <br />
+                                Produto: {pedido.produto} <br />
                                 Descrição: {pedido.descricao} <br />
+                                {/* Exibição ajustada de observações */}
+                                {pedido.observacoes && pedido.observacoes !== 'N/A' && (
+                                    <>Observações: {pedido.observacoes}<br /></>
+                                )}
                                 <span>Data: {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</span> <br />
                                 {/* Outras informações que você queira exibir */}
                             </p>
-                            {/* Lógica dos botões de status */}
+                            {/* Lógica dos botões de status (mantida como estava) */}
                             {pedido.status_atual === "Entregue" ? (
                                 <button className="entregue" disabled>✓ Entregue</button>
                             ) : pedido.status_atual === "A caminho" ? (

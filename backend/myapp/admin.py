@@ -7,12 +7,13 @@ from .models import(
 
 ) 
 class PedidoAdmin(admin.ModelAdmin):
-    list_display = ('cliente', 'entregador', 'descricao', 'observacoes', 'pago', 'data_pedido')
+    list_display = ('cliente', 'entregador', 'descricao', 'observacoes', 'pago', 'data_pedido','produto', 'forma_pagamento')
     list_filter = ('pago', 'entregador', 'data_pedido')
     ordering = ('-data_pedido',)
     fieldsets = (
     ('Informações Básicas', {'fields': ('cliente', 'descricao', 'observacoes', 'pago',)}),
     ('Detalhes do Entregador', {'fields': ('entregador',)}),
+    ('Produto e Pagamento', {'fields': ('produto', 'forma_pagamento',)}),
   )
 
 
