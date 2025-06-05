@@ -17,7 +17,7 @@ function ContPedidos() {
         }
         try {
             console.log("Buscando pedidos para o cliente ID:", selectedClienteId);
-            const response = await axios.get(`/pedidos/`); // Assumindo que a API filtra pelo usuário logado ou usa selectedClienteId no backend se necessário
+            const response = await axios.get(`/pedidos/`);
             const data = response.data;
             console.log("Pedidos recebidos:", data);
 
@@ -38,7 +38,7 @@ function ContPedidos() {
     useEffect(() => {
         console.log("Componente ContPedidos montado. Buscando pedidos iniciais...");
         fetchPedidosCliente();
-    }, []); // O array de dependências vazio [] faz este efeito rodar UMA VEZ após a montagem.
+    }, []);
 
     const handleSubmitNovoPedido = async (event) => {
         event.preventDefault();
@@ -46,17 +46,17 @@ function ContPedidos() {
             alert("Por favor, informe o tipo do produto.");
             return;
         }
-        if (!descricaoProdutoInput.trim()) { // Nova validação para descrição
+        if (!descricaoProdutoInput.trim()) { 
             alert("Por favor, descreva o seu produto.");
             return;
         }
 
-        const payloadObservacoes = observacoesDoPedido.trim() || 'N/A'; // Envia 'N/A' se vazio
+        const payloadObservacoes = observacoesDoPedido.trim() || 'N/A';
 
         const pedidoPayload = {
             cliente_id: selectedClienteId,
-            produto: produtoInput.trim(), // Campo para o tipo/nome do produto
-            descricao: descricaoProdutoInput.trim(), // Campo para a descrição detalhada
+            produto: produtoInput.trim(),
+            descricao: descricaoProdutoInput.trim(),
             observacoes: payloadObservacoes,
             forma_pagamento: pagamentoSelecionado,
         };
@@ -74,13 +74,12 @@ function ContPedidos() {
             fetchPedidosCliente(); 
         } catch (error) {
             console.error("Erro ao criar novo pedido:", error.response ? error.response.data : error.message);
-            alert("Falha ao criar pedido: " + (error.response?.data?.error || error.message));
-
+            // A linha abaixo é a versão simplificada do tratamento de erro que você forneceu no último código.
+            alert("Falha ao criar pedido: " + (error.response?.data?.error || error.response?.data?.detail || error.message));
         }
     };
 
     const handleConfirmarPagamento = async (pedidoId) => {
-        // Sua função handleConfirmarPagamento (sem alterações aqui)
         try {
             await axios.post(`/pedidos/${pedidoId}/confirmar_pagamento/`);
             alert('Pagamento do pedido confirmado!');
@@ -163,8 +162,11 @@ function ContPedidos() {
                                 {pedido.observacoes && pedido.observacoes !== 'N/A' && (
                                     <>Observações: {pedido.observacoes}<br /></>
                                 )}
+                                {/* 👇 LINHA ADICIONADA PARA EXIBIR O ENTREGADOR 👇 */}
+                                {/* Ajuste 'pedido.entregador_nome' para o nome correto do campo em seus dados */}
+                                <>Entregador: {pedido.entregador?.nome || 'Não atribuído'}<br /></>
+                                
                                 <span>Data: {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</span> <br />
-                                {/* Outras informações que você queira exibir */}
                             </p>
                             {/* Lógica dos botões de status (mantida como estava) */}
                             {pedido.status_atual === "Entregue" ? (
