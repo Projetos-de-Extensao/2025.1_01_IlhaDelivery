@@ -8,7 +8,7 @@ function ContPedidos() {
     const [pagamentoSelecionado, setPagamentoSelecionado] = useState('Crédito');
     const [pedidos, setPedidos] = useState([]);
     const [observacoesDoPedido, setObservacoesDoPedido] = useState('');
-    const [selectedClienteId, setSelectedClienteId] = useState(4); // ID do cliente
+    const [selectedClienteId, setSelectedClienteId] = useState(5); // ID do cliente
 
     const fetchPedidosCliente = async () => {
         if (!selectedClienteId && selectedClienteId !== 0) {

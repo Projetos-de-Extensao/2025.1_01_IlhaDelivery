@@ -16,7 +16,7 @@ class Cliente(models.Model):
         return self.nome
 
 
-class Entregador(models.Model):
+class Entregadores(models.Model):
     STATUS_CHOICES = [
         ('Disponível', 'Disponível'), 
         ('Ocupado', 'Ocupado')]
@@ -38,7 +38,7 @@ class Pedido(models.Model):
     ]
 
     cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE)
-    entregador = models.ForeignKey("Entregador", on_delete=models.SET_NULL, null=True, blank=True)
+    entregador = models.ForeignKey("Entregadores", on_delete=models.SET_NULL, null=True, blank=True)
     descricao = models.TextField(blank=True, null=True) # Mantendo como estava
     data_pedido = models.DateTimeField(auto_now_add=True)
     observacoes = models.TextField(blank=True, null=True) # Pode ser usado para outras observações

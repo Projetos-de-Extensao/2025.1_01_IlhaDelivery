@@ -57,17 +57,22 @@ input {
   padding: 12px 16px;
   border: 1px solid #ffcccc;
   border-radius: 25px;
-  background-color: #fff;
+  background-color: #fff;     /* Fundo branco */
+  color: #333;                /* <<<< ADICIONE ISTO (ou outra cor escura) */
   transition: border-color 0.3s;
   font-size: 1rem;
   text-align: center;
+}
+
+/* Você também pode querer um estilo específico para placeholders, se necessário */
+input::placeholder {
+  color: #aaa; /* Cor mais clara para o placeholder */
 }
 
 input:focus {
   border-color: #ff4d4d;
   outline: none;
 }
-
 /* Botão */
 .perfil-box button {
   margin-top: 1.5rem;

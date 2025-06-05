@@ -2,18 +2,21 @@ from rest_framework import viewsets
 from .models import (
     Pedido,
     Cliente,
-    Entregador,
+    Entregadores,
     StatusPedido,
 )
 from .serializers import (
     PedidoSerializer,
     ClienteSerializer,
-    EntregadorSerializer,
+    EntregadoresSerializer,
     StatusPedidoSerializer,
 )
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import serializers
-
+from rest_framework.decorators import action
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 
 class PedidoViewSet(viewsets.ModelViewSet):
@@ -25,17 +28,13 @@ class PedidoViewSet(viewsets.ModelViewSet):
         user = self.request.user # Usuário do token
         if user.is_authenticated:
             try:
-                # Encontra o Cliente associado ao User logado.
-                # Ajuste 'user.cliente' se o related_name for diferente ou se você não tem um OneToOneField direto.
-                # A forma Cliente.objects.filter(user=user).first() é mais segura.
                 cliente_logado = Cliente.objects.filter(user=user).first()
                 if cliente_logado:
-                    # Retorna apenas os pedidos DESTE cliente
                     return Pedido.objects.filter(cliente=cliente_logado).order_by('-data_pedido')
-                elif user.is_staff: # Opcional: admin vê tudo
+                elif user.is_staff: 
                     return Pedido.objects.all().order_by('-data_pedido')
-                return Pedido.objects.none() # Usuário autenticado, mas sem perfil de cliente
-            except AttributeError: # Caso User não tenha o atributo reverso para Cliente
+                return Pedido.objects.none() 
+            except AttributeError: 
                 return Pedido.objects.none()
         return Pedido.objects.none()
 
@@ -45,10 +44,6 @@ class PedidoViewSet(viewsets.ModelViewSet):
             try:
                 cliente_logado = Cliente.objects.filter(user=user).first()
                 if cliente_logado:
-                    # Salva o pedido, associando-o automaticamente ao cliente_logado.
-                    # Isso garante que o cliente_id enviado pelo frontend (se houver)
-                    # seja ignorado em favor do cliente do usuário autenticado,
-                    # o que é mais seguro e consistente para um "fake login".
                     serializer.save(cliente=cliente_logado)
                 else:
                     raise serializers.ValidationError(
@@ -59,18 +54,55 @@ class PedidoViewSet(viewsets.ModelViewSet):
                     "Erro ao encontrar perfil de cliente para o usuário autenticado."
                 )
         else:
-            # Isso não deve acontecer devido à permissão IsAuthenticated
             raise serializers.ValidationError("Usuário não autenticado.")
 
 
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticated] # Assumindo global
 
-class EntregadorViewSet(viewsets.ModelViewSet):
-    queryset = Entregador.objects.all()
-    serializer_class = EntregadorSerializer
+    @action(detail=False, methods=['get', 'put', 'patch'], url_path='me', permission_classes=[IsAuthenticated])
+    def me(self, request):
+        user = request.user
+        try:
+            # Busca o cliente associado ao usuário logado
+            cliente = Cliente.objects.filter(user=user).first()
+            if not cliente:
+                return Response(
+                    {"detail": "Perfil de cliente não encontrado para este usuário."},
+                    status=status.HTTP_404_NOT_FOUND
+                )
+
+            if request.method == 'GET':
+                serializer = self.get_serializer(cliente)
+                return Response(serializer.data)
+
+            # Para PUT (atualização completa) ou PATCH (atualização parcial)
+            elif request.method in ['PUT', 'PATCH']:
+                # Para PATCH, usamos partial=True para permitir atualizações parciais
+                # Para PUT, partial seria False por padrão (espera todos os campos obrigatórios)
+                # Usar partial=True para PUT também o torna mais flexível como um PATCH.
+                serializer = self.get_serializer(cliente, data=request.data, partial=True) 
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        except AttributeError:
+            return Response(
+                {"detail": "Erro ao tentar acessar informações do usuário."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        except Exception as e:
+            return Response(
+                {"detail": f"Ocorreu um erro interno: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+class EntregadoresViewSet(viewsets.ModelViewSet):
+    queryset = Entregadores.objects.all()
+    serializer_class = EntregadoresSerializer
     # permission_classes = [IsAuthenticatedOrReadOnly]
 
 

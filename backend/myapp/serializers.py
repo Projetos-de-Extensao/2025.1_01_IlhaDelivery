@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Pedido, Cliente, Entregador, StatusPedido # Certifique-se que ItemPedido NÃO está aqui
+from .models import (
+    Pedido, 
+    Cliente, 
+    Entregadores, 
+    StatusPedido)
+# Certifique-se que ItemPedido NÃO está aqui
 # Remova qualquer importação de ItemPedidoSerializer se você deletou esse serializer
 
 # ... (ClienteSerializer, EntregadorSerializer, StatusPedidoSerializer - como definidos antes) ...
@@ -10,9 +15,9 @@ class ClienteSerializer(serializers.ModelSerializer): # Exemplo, certifique-se q
         fields = ['id', 'user', 'nome', 'email', 'telefone', 'endereco', 'cpf']
         read_only_fields = ['id', 'user']
 
-class EntregadorSerializer(serializers.ModelSerializer): # Exemplo
+class EntregadoresSerializer(serializers.ModelSerializer): # Exemplo
     class Meta:
-        model = Entregador
+        model = Entregadores
         fields = ['id', 'nome', 'status', 'localizacao']
         read_only_fields = ['id']
 
@@ -29,9 +34,9 @@ class PedidoSerializer(serializers.ModelSerializer):
     cliente_id = serializers.PrimaryKeyRelatedField(
         queryset=Cliente.objects.all(), source='cliente', write_only=True, required=False
     )
-    entregador = EntregadorSerializer(read_only=True, allow_null=True)
+    entregador = EntregadoresSerializer(read_only=True, allow_null=True)
     entregador_id = serializers.PrimaryKeyRelatedField(
-        queryset=Entregador.objects.all(), source='entregador', write_only=True, allow_null=True, required=False
+        queryset=Entregadores.objects.all(), source='entregador', write_only=True, allow_null=True, required=False
     )
     status_historico = StatusPedidoSerializer(many=True, read_only=True, source='status_pedido')
     status_atual = serializers.SerializerMethodField()
@@ -50,4 +55,4 @@ class PedidoSerializer(serializers.ModelSerializer):
         latest_status_obj = obj.status_pedido.order_by('-data_status').first()
         if latest_status_obj:
             return latest_status_obj.get_status_display()
-        return "Pendente"
+        return "Pendente"  

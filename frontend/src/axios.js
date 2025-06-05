@@ -1,7 +1,7 @@
 // Em algum lugar no seu setup do React, ex: main.jsx ou App.jsx, ou um arquivo dedicado api.js
 import axios from 'axios';
 
-const DEMO_AUTH_TOKEN = 'f77d63bea85ea6e0bad4d9e76ef41451de9bb83e';
+const DEMO_AUTH_TOKEN = '0bd520d8381fa8a7d52f7303b35d6ab96ea8fd5a';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'; // Usando variável de ambiente
 
 // Configuração global do Axios

@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import(
     Pedido,
     Cliente,    
-    Entregador,
+    Entregadores,
     StatusPedido,
 
 ) 
@@ -21,7 +21,7 @@ class PedidoAdmin(admin.ModelAdmin):
 
 admin.site.register(Pedido, PedidoAdmin)
 admin.site.register(Cliente)
-admin.site.register(Entregador)
+admin.site.register(Entregadores)
 admin.site.register(StatusPedido)
 
 
