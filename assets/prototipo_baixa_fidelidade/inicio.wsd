@@ -1,0 +1,17 @@
+@startsalt Tela de Início
+
+{
+{T
+
+  | ILHA DELIVERY             | [Início] [Pedidos] [Sobre] [Perfil]
+}
+
+{+
+  "**SEU DELIVERY LOCAL DE CONFIANÇA**"
+  "Faça seu pedido para matar sua fome!"
+  [ Criar Conta ]
+  [ Já tenho conta ]
+}
+}
+
+@endsalt
