@@ -2,7 +2,6 @@ site_name: Projeto Ilha Delivery
 docs_dir: docs
 site_description: Documentação do projeto Ilha Delivery
 repo_url: https://github.com/Projetos-de-Extensao/2025.1_01_IlhaDelivery
-site_url: https://vikxzzzz.github.io/<Projetos-de-Extensao/2025.1_01_IlhaDelivery>/
 
 theme:
   name: material
