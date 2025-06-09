@@ -129,7 +129,7 @@ function ContPedidos() {
                     />
 
                     {/* Campo: Pagamento */}
-                    <label htmlFor="pagamento">Pagamento:</label>
+                    <label htmlFor="pagamento">Forma de Pagamento:</label>
                     <select
                         id="pagamento"
                         value={pagamentoSelecionado}

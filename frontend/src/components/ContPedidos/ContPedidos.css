@@ -1,147 +1,267 @@
-/* Reset básico */
-body, h1, h2, h3, p, a, input, select, button {
-    margin: 0;
-    padding: 0;
-    font-family: "Segoe UI", sans-serif;
-    box-sizing: border-box;
-  }
+/* ----------------------------------- */
+/* --- TEMA E VARIÁVEIS GLOBAIS --- */
+/* ----------------------------------- */
+:root {
+  --color-primary: #cc0000;
+  --color-primary-dark: #a30000;
+  --color-accent: #ff4d4d;
+  --color-background: #fcf9f9; /* Um branco levemente rosado */
+  --color-surface: #ffffff; /* Para os cards */
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+  --color-border: #e0e0e0;
   
-  /* Página geral */
+  --status-green: #198754;
+  --status-green-bg: #e8f3ec;
+  --status-orange: #fd7e14;
+  --status-orange-bg: #fff2e7;
+  --status-red: var(--color-primary);
+  --status-red-bg: #fdeaea;
+
+  --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --border-radius: 8px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ----------------------------------- */
+/* --- RESET E ESTILOS DE BASE --- */
+/* ----------------------------------- */
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ----------------------------------- */
+/* --- LAYOUT DA PÁGINA (MOBILE-FIRST) --- */
+/* ----------------------------------- */
+.pedidos-page {
+  padding: 1rem;
+}
+
+/* Estilos compartilhados para os cabeçalhos das seções */
+.novo-pedido h3,
+.meus-pedidos h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+  font-size: 1.75rem;
+}
+
+.novo-pedido p,
+.meus-pedidos p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* ----------------------------------- */
+/* --- SEÇÃO: NOVO PEDIDO (FORMULÁRIO) --- */
+/* ----------------------------------- */
+.novo-pedido {
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  margin-top: 3.5rem;
+}
+
+.novo-pedido form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.novo-pedido label {
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  font-size: 0.9rem;
+}
+
+.novo-pedido input,
+.novo-pedido select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-base);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.novo-pedido input:focus,
+.novo-pedido select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.25);
+}
+
+.novo-pedido button[type="submit"] {
+  padding: 0.85rem;
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.novo-pedido button[type="submit"]:hover {
+  background-color: var(--color-primary);
+}
+
+/* ----------------------------------- */
+/* --- SEÇÃO: MEUS PEDIDOS (LISTA) --- */
+/* ----------------------------------- */
+.meus-pedidos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* ADICIONADO PARA SCROLL EM TODAS AS TELAS */
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  max-height: 60vh;          /* Altura máxima para telas pequenas/médias */
+  overflow-y: auto;          /* Scroll vertical se o conteúdo passar da altura */
+  padding-right: 1rem;       /* Espaço para a barra de rolagem */
+}
+
+.pedido {
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pedido p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.pedido p strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.pedido span {
+  float: right;
+  font-size: 0.85em;
+  color: #999;
+}
+
+.pedido button {
+  align-self: flex-start;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: none;
+  background-color: #f0f0f0;
+  color: #555;
+  cursor: default;
+}
+
+.pedido .entregue {
+  background-color: var(--status-green-bg);
+  color: var(--status-green);
+}
+.pedido .acaminho {
+  background-color: var(--status-orange-bg);
+  color: var(--status-orange);
+}
+.pedido .empreparo,
+.pedido .pago {
+  background-color: var(--status-red-bg);
+  color: var(--status-red);
+}
+
+/* ----------------------------------- */
+/* --- ESTILOS PARA DESKTOP (TABLET) --- */
+/* ----------------------------------- */
+@media (min-width: 768px) {
   .pedidos-page {
     max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fffafa;
-    border: 2px solid #ff4d4d;
-    border-radius: 10px;
-  }
-  
-  /* Cabeçalho */
-  header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  header h2 {
-    color: #cc0000;
-  }
-  
-  nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #b30000;
-    font-weight: bold;
-  }
-  
-  /* Seção novo pedido */
-  .novo-pedido {
-    border: 2px solid #ff6666;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom:2rem;
-    margin-top: 2rem;
-    background-color: #fff0f0;
-  }
-  
-  .novo-pedido h3 {
-    color: #cc0000;
-    margin-bottom: 5px;
-  }
-  
-  .novo-pedido p {
-    margin-bottom: 15px;
-    color: #333;
-  }
-  
-  .novo-pedido form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .novo-pedido label {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #a30000;
-  }
-  
-  .novo-pedido input,
-  .novo-pedido select {
-    padding: 8px;
-    border: 1px solid #ffcccc;
-    border-radius: 5px;
-    margin-top: 4px;
-    color: #000; /* <-- Adicione esta linha */
-    background-color: #fff; /* opcional, para garantir fundo claro */
+    margin: 2.5rem auto;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow);
   }
 
-  
-  .novo-pedido button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  .novo-pedido, .meus-pedidos {
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
   }
-  
-  .novo-pedido button:hover {
-    background-color: #cc0000;
+
+  .novo-pedido {
+    margin-top: 0;
   }
-  
-  /* Meus pedidos */
+}
+
+/* ----------------------------------- */
+/* --- ESTILOS PARA DESKTOP (WIDESCREEN) --- */
+/* ----------------------------------- */
+@media (min-width: 1024px) {
+  .pedidos-page {
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    padding: 3rem;
+  }
+
+  .novo-pedido, .meus-pedidos {
+    background-color: var(--color-surface);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    margin: 0;
+  }
+
+  .meus-pedidos {
+    max-height: 75vh; /* Aumenta a altura máxima para telas maiores */
+  }
+
+  .novo-pedido h3,
   .meus-pedidos h3 {
-    color: #cc0000;
-    margin-bottom: 5px;
+    font-size: 1.5rem;
+    margin-top: 0;
   }
-  
-  .meus-pedidos p {
-    margin-bottom: 20px;
-    color: #555;
+}
+
+/* ----------------------------------- */
+/* --- ESTILOS PARA TELAS MUITO GRANDES --- */
+/* ----------------------------------- */
+@media (min-width: 1440px) {
+  .pedidos-page {
+    max-width: 1400px;
+    padding: 4rem;
+    gap: 3rem;
   }
-  
-  .pedido {
-    border: 1px dashed #ff9999;
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #fff8f8;
-    border-radius: 8px;
-    position: relative;
+
+  .novo-pedido h3,
+  .meus-pedidos h3 {
+    font-size: 1.75rem;
   }
-  
-  .pedido p {
-    margin-bottom: 10px;
+
+  .pedido p strong {
+    font-size: 1.2rem;
   }
-  
-  .pedido span {
-    float: right;
-    color: #888;
-    font-size: 0.9em;
-  }
-  
-  .pedido button {
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-weight: bold;
-    border: 2px solid;
-    background-color: white;
-    cursor: default;
-  }
-  
-  .entregue {
-    border-color: green;
-    color: green;
-  }
-  
-  .acaminho {
-    border-color: orange;
-    color: orange;
-  }
-  
-  .empreparo {
-    border-color: #cc0000;
-    color: #cc0000;
-  }
-  
+}
