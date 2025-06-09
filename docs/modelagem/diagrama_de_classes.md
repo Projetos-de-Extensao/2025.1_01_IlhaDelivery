@@ -3,37 +3,25 @@ id: diagrama_de_classes
 title: Diagrama de Classes
 ---
 
-# Não precisa entregar para a AP1
 ## Introdução
 
 <p align = "justify">
 O diagrama de classes UML é um diagrama que mostra a estrutura do sistema desenhado no nível de classes e interfaces, ilustra as funcionalidades, dependências e relacionamentos de cada elemento. Pode ser vista como uma representação visual da arquitetura de um sistema. 
 </p>
 
-## Metodologia
 
-<p align = "justify">
-A equipe se reuniu por .... e realizou um brainstorm onde foram dicutidos os tópicos chaves e a arquitetura geral dos sistemas, e assim criamos...
-
-Para a criação da primeira versão do diagrama de classes, a equipe utilizou o programa... Além disso, foi utilizado... para videoconferência e Visual Studio Code / Live Share para elaboração da documentação.
-</p>
-
-# ENTREGUE NO PRÓXIMO INCREMENTO
 ## Diagrama de Classes
 
 ### Versão 1.0
 
 
+![![Diagrama de Classes](../assets/diagrama_de_classe/DiagramaDeClasses_IlhaDelivery.png)](../assets/diagrama_de_classe/DiagramaDeClasses_IlhaDelivery.png)
 
-![![Diagrama de Classes](../assets/diagrama_de_classes/diagrama_de_classes.png)](../assets/diagrama_de_classes/diagrama_de_classes.png)
-
-### Versão 1.1
-![![Diagrama de Classes](../assets/diagrama_de_classes/diagrama_de_classes_1.1.png)](../assets/diagrama_de_classes/diagrama_de_classes_1.1.png)
 
 
 ### Versão 2.0
 
-![![Diagrama de Classes](../assets/diagrama_de_classes/diagrama_de_classes_1.1.png)](../assets/diagrama_de_classes/diagrama_de_classes_2.0.png)
+![![Diagrama de Classes](../assets/diagrama_de_classe/Diagrama%20de%20Classe%202.0.png)](../assets/diagrama_de_classe/Diagrama%20de%20Classe%202.0.png)
 
 
 #### Rastreabilidade de Requisitos

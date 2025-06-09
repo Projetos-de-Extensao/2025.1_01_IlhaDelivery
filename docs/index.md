@@ -1,14 +1,16 @@
 # Projeto Ilha Delivery
 
-### <i> Sejam bem vindos ao <strong> Projeto Ilha Delivery!! </strong></i> 
-## Iniciação
-<ul>
-  <li><a href="iniciação/5w2h">5w2h</li>
-  <li><a href="iniciação/Brainstorm">Brainstorm</li>
-  <li><a href="iniciação/mapa_mental">Mapa Mental</li>
-  <li><a href="iniciação/Pesquisa">Pesquisa</li>
-  <li><a href="iniciação/prototipo_alta_fidelidade">Protótipo</li>
-  <li><a href="docs/modelagem/das.md">Modelagem DAS</li>
-  <li><a href="docs/interacao/interacao1.md">Interação 1</li>
-</ul>
+Seja bem-vindo à documentação do projeto **Ilha Delivery**. Esta iniciativa visa desenvolver uma aplicação web para solucionar os desafios de entrega de produtos na comunidade da Ilha Primeira, no Rio de Janeiro, que não é atendida por serviços convencionais.
 
+---
+
+## Documentação e Artefatos do Projeto
+
+Acesse os documentos abaixo para entender todas as fases do projeto, desde a concepção até o desenvolvimento.
+
+* **[Planejamento 5W2H](iniciação/5w2h.md)**: Definição do escopo, objetivos e plano de ação do projeto.
+* **[Brainstorm de Funcionalidades](iniciação/Brainstorm.md)**: Levantamento inicial de ideias e requisitos da aplicação.
+* **[Mapa Mental](iniciação/mapa_mental.md)**: Organização visual dos conceitos e da estrutura do projeto.
+* **[Pesquisa de Contexto](iniciação/Pesquisa.md)**: Análise detalhada do problema e da comunidade que será atendida.
+* **[Documento de Arquitetura de Software (DAS)](modelagem/das.md)**: Descrição da arquitetura, tecnologias e decisões de design do sistema.
+* **[Relatório da Iteração 1](interacao/interacao1.md)**: Acompanhamento e resultados do primeiro ciclo de desenvolvimento.
