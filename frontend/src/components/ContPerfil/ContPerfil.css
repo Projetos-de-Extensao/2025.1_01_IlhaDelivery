@@ -1,94 +1,178 @@
-/* Reset básico */
-body, h1, h2, h3, p, a, input, button, label {
+/* 1. Variáveis Globais e Reset Moderno */
+:root {
+  --cor-primaria: #ff4d4d;
+  --cor-primaria-escura: #cc0000;
+  --cor-texto-label: #a30000;
+  --cor-texto-input: #333;
+  --cor-borda: #ffcccc;
+  --cor-fundo-pagina: #f8f9fa; /* Cor de fundo mais neutra */
+  --cor-fundo-box: #ffffff;
+  --sombra-box: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --raio-borda: 12px;
+  --fonte-principal: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Reset mais robusto */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", sans-serif;
   box-sizing: border-box;
 }
 
-/* Página */
-.perfil-page {
-  padding: 1rem;
-  margin-top: 10rem;
-  background-color: #fffafa;
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-fundo-pagina);
+  color: var(--cor-texto-input);
 }
 
-/* Caixa de perfil */
+/* 2. Layout da Página Principal */
+.perfil-page {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centraliza verticalmente */
+  min-height: 100vh;  /* Garante que ocupe a tela toda */
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* 3. Caixa de Perfil (Card) */
 .perfil-box {
-  background-color: #fff0f0;
-  border: 2px solid #ff6666;
-  border-radius: 12px;
+  background-color: var(--cor-fundo-box);
+  border: 1px solid #eee;
+  border-radius: var(--raio-borda);
   padding: 2rem;
-  max-width: 500px;
   width: 100%;
+  max-width: 500px;
+  box-shadow: var(--sombra-box);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.perfil-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 .perfil-box h3 {
-  color: #cc0000;
+  color: var(--cor-primaria-escura);
   margin-bottom: 0.5rem;
-}
-
-.perfil-box p {
-  color: #333;
-  margin-bottom: 2rem;
-}
-
-/* Agrupamento label + input */
-.form-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  gap: 1rem;
-}
-
-.form-label {
-  min-width: 100px;
-  font-weight: bold;
-  color: #a30000;
-  text-align: right;
-}
-
-/* Estilo dos inputs */
-input {
-  flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #ffcccc;
-  border-radius: 25px;
-  background-color: #fff;     /* Fundo branco */
-  color: #333;                /* <<<< ADICIONE ISTO (ou outra cor escura) */
-  transition: border-color 0.3s;
-  font-size: 1rem;
+  font-size: 1.75rem;
   text-align: center;
 }
 
-/* Você também pode querer um estilo específico para placeholders, se necessário */
-input::placeholder {
-  color: #aaa; /* Cor mais clara para o placeholder */
+.perfil-box p {
+  color: #6c757d;
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 
-input:focus {
-  border-color: #ff4d4d;
-  outline: none;
+/* 4. Grupos de Formulário (Mobile-First) */
+.form-group {
+  margin-bottom: 1.5rem;
 }
-/* Botão */
-.perfil-box button {
-  margin-top: 1.5rem;
+
+.form-label {
+  display: block; /* Ocupa a linha toda no mobile */
+  font-weight: bold;
+  color: var(--cor-texto-label);
+  margin-bottom: 0.5rem; /* Espaço entre label e input */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espaço para o ícone */
+}
+
+/* Estilo dos Inputs */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px; /* Borda mais sutil */
+  background-color: #f8f9fa;
+  color: var(--cor-texto-input);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 1rem;
+}
+
+.form-input::placeholder {
+  color: #aaa;
+}
+
+.form-input:focus {
+  border-color: var(--cor-primaria);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
+}
+
+/* 5. Botão Principal */
+.submit-btn {
+  margin-top: 1rem;
   padding: 14px;
-  background-color: #ff4d4d;
+  background-image: linear-gradient(45deg, var(--cor-primaria), #ff6b81);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
 }
 
-.perfil-box button:hover {
-  background-color: #cc0000;
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
 }
 
+.submit-btn:disabled {
+  background-image: none;
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 6. Mensagens de Feedback (Erro, Sucesso, Carregando) */
+.feedback-message {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.feedback-message.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.feedback-message.success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.feedback-message.loading {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border: 1px solid #bee5eb;
+}
+
+/* 7. Responsividade para telas maiores (Desktop) */
+@media (min-width: 576px) {
+  .form-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .form-label {
+    flex-basis: 120px; /* Base de largura para o label */
+    flex-shrink: 0;   /* Não deixa o label encolher */
+    margin-bottom: 0; /* Remove a margem de baixo */
+    justify-content: flex-end; /* Alinha o texto à direita */
+  }
+
+  .form-input {
+    flex: 1; /* Faz o input ocupar o espaço restante */
+  }
+}

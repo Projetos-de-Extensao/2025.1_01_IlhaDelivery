@@ -1,3 +1,5 @@
+/* src/components/Footer.css */
+
 .footer {
   background-color: #111;
   color: #eee;
@@ -17,13 +19,13 @@
 }
 
 .footer-copy {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-links {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
 }
 
@@ -37,11 +39,12 @@
   color: #fff;
 }
 
-/* Responsivo */
-@media (min-width: 600px) {
+/* Responsivo para telas maiores */
+@media (min-width: 768px) {
   .footer-container {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     text-align: left;
   }
 

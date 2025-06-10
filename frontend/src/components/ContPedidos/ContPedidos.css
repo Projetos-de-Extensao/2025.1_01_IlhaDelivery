@@ -84,15 +84,32 @@ body {
   font-size: 0.9rem;
 }
 
+/* Bloco de código CORRIGIDO para texto branco */
+/* Bloco de código CORRIGIDO para fundo branco e texto preto */
 .novo-pedido input,
 .novo-pedido select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   font-family: var(--font-family-base);
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
+
+  /* --- AJUSTES FINAIS --- */
+
+  /* 1. Fundo branco, como solicitado */
+  background-color: #ffffff; 
+  
+  /* 2. Texto preto, como solicitado */
+  color: #000000;
+
+  /* 3. Borda cinza claro padrão para contraste */
+  border: 1px solid var(--color-border); 
+}
+
+/* Estilo para o placeholder (texto de dica) */
+.novo-pedido input::placeholder {
+  color: #a9a9a9; /* Um cinza padrão para placeholders */
 }
 
 .novo-pedido input:focus,
