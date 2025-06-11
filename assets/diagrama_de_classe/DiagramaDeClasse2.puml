@@ -1,0 +1,106 @@
+@startuml Diagrama de Classe 2.0
+'=============== DIAGRAMA DE CLASSES ROBUSTO - ILHA DELIVERY ===============
+
+title "Diagrama de Classes Robusto - Ilha Delivery"
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+' --- ENUMS (Tipos e Estados) ---
+enum EnumStatusPedido  {
+  Pendente
+  Pago
+  Em_Preparo
+  A_Caminho
+  Entregue
+  Cancelado
+}
+
+enum EnumStatusEntregador  {
+  Disponivel
+  Ocupado
+  Inativo
+}
+
+enum EnumFormaPagamento {
+  PIX
+  Cartao_Credito
+  Cartao_Debito
+}
+
+
+
+class User <<abstract>> {
+  + username: String
+  # password_hash: String
+  --
+  + autenticar(senha): Boolean
+  + criar_sessao(): String
+}
+
+class Cliente {
+  + nome: String
+  + email: String
+  + telefone: String
+  + endereco: String
+  --
+  + atualizar_perfil(dados: Dict)
+  + listar_pedidos(): List<Pedido>
+  + criar_pedido(dados_pedido: Dict): Pedido
+  + avaliar_pedido(pedido: Pedido, avaliacao: Avaliacao)
+}
+
+class Entregador{
+  + nome: String
+  - status: EnumStatusEntregador
+  - localizacao: String
+  --
+  + atualizar_disponibilidade(status: EnumStatusEntregador)
+  + atualizar_localizacao(coords: String)
+  + listar_pedidos_atribuidos(): List<Pedido>
+  + aceitar_entrega(pedido: Pedido)
+  + finalizar_entrega(pedido: Pedido)
+}
+
+class Pedido {
+  + produto: String
+  + descricao: String
+  + data_pedido: DateTime
+  + pago: Boolean
+  - forma_pagamento: EnumFormaPagamento
+  --
+  + {static} criar(cliente: Cliente, ...): Pedido
+  + adicionar_status_historico(status: EnumStatusPedido)
+  + atribuir_entregador(entregador: Entregadores)
+  + marcar_como_pago(forma: EnumFormaPagamento)
+  + get_status_atual(): StatusPedido
+}
+
+class StatusPedido  {
+  + status: EnumStatusPedido
+  + data_atualizacao: DateTime
+}
+
+
+
+
+' ========== RELACIONAMENTOS E CARDINALIDADE ==========
+
+' Relacionamento de Usuário com perfis
+User "1" -- "1" Cliente : possui
+User "1" -- "1" Entregador : possui
+
+' Relacionamentos do Pedido
+Cliente "1" -- "0..*" Pedido : solicita
+Entregador "1" -- "0..*" Pedido : entrega
+
+' Relacionamentos de composição e dependência do Pedido
+Pedido "1" -- "1..*" StatusPedido : "possui histórico de"
+
+
+
+' Uso dos Enums pelas classes
+Pedido ..> EnumFormaPagamento : usa
+StatusPedido ..> EnumStatusPedido : usa
+Entregador ..> EnumStatusEntregador : usa
+
+@enduml

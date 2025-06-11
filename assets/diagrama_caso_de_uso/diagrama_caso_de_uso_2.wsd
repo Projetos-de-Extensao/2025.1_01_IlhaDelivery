@@ -1,0 +1,64 @@
+@startuml 2 
+'=============== DIAGRAMA DE CASO DE USO - VERSÃO SIMPLIFICADA ===============
+
+left to right direction
+skinparam packageStyle rectangle
+
+title "Diagrama de Caso de Uso Simplificado - Ilha Delivery"
+
+' --- ATORES DO SISTEMA ---
+actor Cliente
+actor Entregador
+actor Administrador
+
+
+' --- DEFINIÇÃO DO SISTEMA E CASOS DE USO ---
+rectangle "Sistema Ilha Delivery" {
+
+  ' Casos de Uso que exigem autenticação
+  usecase "Gerenciar Conta" as UC_GerenciarConta
+  usecase "Acompanhar Status do Pedido" as UC_AcompanharPedido
+  usecase "Ver Histórico de Pedidos" as UC_VerHistorico
+  usecase "Atualizar Status da Entrega" as UC_AtualizarStatus
+  usecase "Ver Pedidos Atribuídos" as UC_VerPedidos
+  usecase "Gerenciar Disponibilidade" as UC_GerenciarDisponibilidade
+
+  ' Casos de Uso específicos
+  usecase "Realizar Pedido" as UC_RealizarPedido
+  usecase "Cadastrar-se" as UC_Cadastro
+
+  ' Casos de Uso do Administrador
+  usecase "Gerenciar Pedidos" as UC_GerenciarPedidos
+  usecase "Gerenciar Entregadores" as UC_GerenciarEntregadores
+  usecase "Gerenciar Clientes" as UC_GerenciarClientes
+}
+
+
+' ========== RELACIONAMENTOS ==========
+
+' Cliente e Entregador SÃO tipos de Usuário Autenticado (Herança/Generalização)
+
+
+' Qualquer usuário pode se cadastrar
+Cliente --> UC_Cadastro
+
+' Ações de um Usuário Autenticado (seja Cliente ou Entregador)
+
+
+' Ações específicas do Cliente
+Cliente --> UC_RealizarPedido
+Cliente --> UC_AcompanharPedido
+Cliente --> UC_VerHistorico
+Cliente --> UC_GerenciarConta
+
+' Ações específicas do Entregador
+
+Entregador --> UC_VerPedidos
+Entregador --> UC_GerenciarDisponibilidade
+
+' --- Relacionamentos do Administrador ---
+Administrador -- UC_GerenciarPedidos
+Administrador -- UC_GerenciarEntregadores
+Administrador -- UC_GerenciarClientes
+
+@enduml
