@@ -16,7 +16,7 @@
 Desenvolvimento de um aplicativo web para entrega de produtos na Ilha Primeira
 
 ## Screenshots
-![![Captura de tela](../../../binam/Documents/2025.1_01_IlhaDelivery/docs/assets/captura1.png)](../../../binam/Documents/2025.1_01_IlhaDelivery/docs/assets/captura1.png)
+![![Captura de tela](../../../binam/Documents/2025.1_01_IlhaDelivery/docs/assets/captura1.png)](../../../binam/Documents/2025.1_01_IlhaDelivery/docs/assets/captura2.png)
 
 ## Instalação 
 **Linguagens**: Python<br>
