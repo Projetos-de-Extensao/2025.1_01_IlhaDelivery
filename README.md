@@ -28,7 +28,7 @@ Insira um manual ou um script para auxiliar ainda mais.
 Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
 
 ## Vídeo
-https://drive.google.com/file/d/1HrUj5JjRrqk_o9PcldegePti53DXRjPP/view
+https://youtu.be/ps_sCbRUgxM?si=dP63cGW_8foYr0Vj
 
 ## Outros 
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
