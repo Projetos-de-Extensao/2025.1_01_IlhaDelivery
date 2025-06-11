@@ -2,6 +2,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from decimal import Decimal # ADICIONAR ESTA LINHA
 
 
 class Cliente(models.Model):
@@ -39,12 +40,32 @@ class Pedido(models.Model):
 
     cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE)
     entregador = models.ForeignKey("Entregadores", on_delete=models.SET_NULL, null=True, blank=True)
-    descricao = models.TextField(blank=True, null=True) # Mantendo como estava
+    descricao = models.TextField(blank=True, null=True)
     data_pedido = models.DateTimeField(auto_now_add=True)
-    observacoes = models.TextField(blank=True, null=True) # Pode ser usado para outras observações
+    observacoes = models.TextField(blank=True, null=True)
     pago = models.BooleanField(default=False)
-    produto = models.CharField(max_length=255, blank=True, null=True)  # Adicionado para manter compatibilidade com o HTML
+    produto = models.CharField(max_length=255, blank=True, null=True)
     forma_pagamento = models.CharField(max_length=50,choices=FORMAS_PAGAMENTO_CHOICES,blank=True, null=True)
+    valor_produto = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        null=True, 
+        blank=True,
+        help_text="Valor original do produto/serviço (sem a taxa)."
+    )
+    taxa_servico = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        default=0.00, 
+        help_text="Taxa de serviço do Ilha Delivery."
+    )
+    valor_total = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        null=True, 
+        blank=True,
+        help_text="Valor final a ser pago pelo cliente (produto + taxa)."
+    )
 
     def clean(self):
         if self.cliente and not self.pago: 
@@ -59,7 +80,12 @@ class Pedido(models.Model):
 
 
     def save(self, *args, **kwargs):
-        self.full_clean()  # Garante que as validações sejam executadas
+        # --- LÓGICA DE CÁLCULO DA TAXA ---
+        if self.valor_produto is not None:
+            taxa_percentual = Decimal('0.15')
+            self.taxa_servico = self.valor_produto * taxa_percentual
+            self.valor_total = self.valor_produto + self.taxa_servico
+        self.full_clean()
         super().save(*args, **kwargs)
 
     def confirmar_pagamento(self):
@@ -85,10 +111,10 @@ class StatusPedido(models.Model):
     STATUS_CHOICES = [
         ('Pendente', 'Pendente'),
         ('Pago', 'Pago'),
-        ('Em Preparo', 'Em Preparo'), # Adicionado "Em Preparo" para corresponder ao HTML
-        ('Em Transporte', 'A caminho'), # "A caminho" como no HTML
+        ('Em Preparo', 'Em Preparo'), 
+        ('Em Transporte', 'A caminho'), 
         ('Entregue', 'Entregue'),
-        ('Cancelado', 'Cancelado'), # Opcional
+        ('Cancelado', 'Cancelado'),
     ]
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='status_pedido')
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)

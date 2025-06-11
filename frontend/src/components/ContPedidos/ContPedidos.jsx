@@ -3,12 +3,13 @@ import axios from '../../axios'; // Ou a sua configuração do axios
 import './ContPedidos.css';
 
 function ContPedidos() {
-    const [produtoInput, setProdutoInput] = useState(''); // Usado para "Tipo do Produto"
+    const [produtoInput, setProdutoInput] = useState('');
     const [descricaoProdutoInput, setDescricaoProdutoInput] = useState('');
+    const [valorProdutoInput, setValorProdutoInput] = useState(''); 
     const [pagamentoSelecionado, setPagamentoSelecionado] = useState('Crédito');
     const [pedidos, setPedidos] = useState([]);
     const [observacoesDoPedido, setObservacoesDoPedido] = useState('');
-    const [selectedClienteId, setSelectedClienteId] = useState(5); // ID do cliente
+    const [selectedClienteId, setSelectedClienteId] = useState(5);
 
     const fetchPedidosCliente = async () => {
         if (!selectedClienteId && selectedClienteId !== 0) {
@@ -16,17 +17,13 @@ function ContPedidos() {
             return;
         }
         try {
-            console.log("Buscando pedidos para o cliente ID:", selectedClienteId);
             const response = await axios.get(`/pedidos/`);
             const data = response.data;
-            console.log("Pedidos recebidos:", data);
-
             if (data && Array.isArray(data.results)) {
                 setPedidos(data.results);
             } else if (Array.isArray(data)) {
                 setPedidos(data);
             } else {
-                console.warn("A resposta da API de pedidos não continha um array de pedidos esperado. Recebido:", data);
                 setPedidos([]);
             }
         } catch (error) {
@@ -36,18 +33,17 @@ function ContPedidos() {
     };
 
     useEffect(() => {
-        console.log("Componente ContPedidos montado. Buscando pedidos iniciais...");
         fetchPedidosCliente();
     }, []);
 
     const handleSubmitNovoPedido = async (event) => {
         event.preventDefault();
-        if (!produtoInput.trim()) {
-            alert("Por favor, informe o tipo do produto.");
+        if (!produtoInput.trim() || !descricaoProdutoInput.trim()) {
+            alert("Por favor, preencha o produto e a descrição.");
             return;
         }
-        if (!descricaoProdutoInput.trim()) { 
-            alert("Por favor, descreva o seu produto.");
+        if (!valorProdutoInput || isNaN(parseFloat(valorProdutoInput)) || parseFloat(valorProdutoInput) <= 0) {
+            alert("Por favor, informe um valor de pedido válido.");
             return;
         }
 
@@ -57,36 +53,23 @@ function ContPedidos() {
             cliente_id: selectedClienteId,
             produto: produtoInput.trim(),
             descricao: descricaoProdutoInput.trim(),
+            valor_produto: parseFloat(valorProdutoInput).toFixed(2), // Adicionado
             observacoes: payloadObservacoes,
             forma_pagamento: pagamentoSelecionado,
         };
 
-        console.log("Payload que será enviado:", JSON.stringify(pedidoPayload, null, 2));
-
         try {
             const response = await axios.post('/pedidos/', pedidoPayload);
-            console.log("Pedido criado:", response.data);
             alert("Pedido enviado com sucesso!");
             setProdutoInput(''); 
             setDescricaoProdutoInput('');
+            setValorProdutoInput(''); // Limpar o campo de valor
             setObservacoesDoPedido('');
             setPagamentoSelecionado('Crédito');
             fetchPedidosCliente(); 
         } catch (error) {
             console.error("Erro ao criar novo pedido:", error.response ? error.response.data : error.message);
-            // A linha abaixo é a versão simplificada do tratamento de erro que você forneceu no último código.
             alert("Falha ao criar pedido: " + (error.response?.data?.error || error.response?.data?.detail || error.message));
-        }
-    };
-
-    const handleConfirmarPagamento = async (pedidoId) => {
-        try {
-            await axios.post(`/pedidos/${pedidoId}/confirmar_pagamento/`);
-            alert('Pagamento do pedido confirmado!');
-            fetchPedidosCliente();
-        } catch (error) {
-            console.error("Erro ao confirmar pagamento:", error.response ? error.response.data : error);
-            alert("Falha ao confirmar pagamento: " + (error.response?.data?.error || error.message));
         }
     };
 
@@ -96,43 +79,40 @@ function ContPedidos() {
                 <h3>Fazer Novo Pedido</h3>
                 <p>Escolha o que deseja e envie seu pedido!</p>
                 <form onSubmit={handleSubmitNovoPedido}>
-                    {/* Campo: Tipo do Produto */}
                     <label htmlFor="produtoInput">Tipo do Produto:</label>
                     <input
-                        id="produtoInput"
-                        type="text"
-                        placeholder="Digite o nome do produto"
-                        value={produtoInput}
-                        onChange={(e) => setProdutoInput(e.target.value)}
-                        required
+                        id="produtoInput" type="text" placeholder="Digite o nome do produto"
+                        value={produtoInput} onChange={(e) => setProdutoInput(e.target.value)} required
                     />
 
-                    {/* Campo: Descreva o seu produto */}
                     <label htmlFor="descricaoProduto">Descreva o seu produto:</label>
                     <input
-                        id="descricaoProduto"
-                        type="text"
-                        placeholder="Estabelecimento, valor, quantidade, etc."
-                        value={descricaoProdutoInput}
-                        onChange={(e) => setDescricaoProdutoInput(e.target.value)}
-                        required 
+                        id="descricaoProduto" type="text" placeholder="Estabelecimento, quantidade, etc."
+                        value={descricaoProdutoInput} onChange={(e) => setDescricaoProdutoInput(e.target.value)} required 
                     />
 
-                    {/* Campo: Observações do Pedido */}
+                    {/* NOVO CAMPO DE VALOR */}
+                    <label htmlFor="valorProduto">Valor do Pedido (R$):</label>
+                    <input
+                        id="valorProduto"
+                        type="number"
+                        placeholder="Ex: 50.00"
+                        value={valorProdutoInput}
+                        onChange={(e) => setValorProdutoInput(e.target.value)}
+                        required
+                        step="0.01"
+                        min="0.01"
+                    />
+
                     <label htmlFor="observacoes">Observações do Pedido:</label>
                     <input
-                        id="observacoes"
-                        type="text"
-                        placeholder="Alguma observação para o pedido? (opcional)"
-                        value={observacoesDoPedido}
-                        onChange={(e) => setObservacoesDoPedido(e.target.value)}
+                        id="observacoes" type="text" placeholder="Alguma observação? (opcional)"
+                        value={observacoesDoPedido} onChange={(e) => setObservacoesDoPedido(e.target.value)}
                     />
 
-                    {/* Campo: Pagamento */}
                     <label htmlFor="pagamento">Forma de Pagamento:</label>
                     <select
-                        id="pagamento"
-                        value={pagamentoSelecionado}
+                        id="pagamento" value={pagamentoSelecionado}
                         onChange={(e) => setPagamentoSelecionado(e.target.value)}
                     >
                         <option value="Crédito">Crédito</option>
@@ -158,17 +138,26 @@ function ContPedidos() {
                                 <strong>Pedido #{pedido.id}</strong> <br />
                                 Produto: {pedido.produto} <br />
                                 Descrição: {pedido.descricao} <br />
-                                {/* Exibição ajustada de observações */}
                                 {pedido.observacoes && pedido.observacoes !== 'N/A' && (
                                     <>Observações: {pedido.observacoes}<br /></>
                                 )}
-                                {/* 👇 LINHA ADICIONADA PARA EXIBIR O ENTREGADOR 👇 */}
-                                {/* Ajuste 'pedido.entregador_nome' para o nome correto do campo em seus dados */}
-                                <>Entregador: {pedido.entregador?.nome || 'Não atribuído'}<br /></>
+                                Entregador: {pedido.entregador?.nome || 'Não atribuído'}<br />
+                                
+                                {/* --- SEÇÃO DE VALORES --- */}
+                                {pedido.valor_total != null && (
+                                  <>
+                                    <hr style={{margin: '8px 0', border: '1px solid #eee'}}/>
+                                    Valor do Produto: R$ {Number(pedido.valor_produto).toFixed(2).replace('.', ',')} <br />
+                                    Taxa de Serviço: R$ {Number(pedido.taxa_servico).toFixed(2).replace('.', ',')} <br />
+                                    <strong>Valor Total: R$ {Number(pedido.valor_total).toFixed(2).replace('.', ',')}</strong> <br />
+                                    <hr style={{margin: '8px 0', border: '1px solid #eee'}}/>
+                                  </>
+                                )}
                                 
                                 <span>Data: {new Date(pedido.data_pedido).toLocaleString('pt-BR')}</span> <br />
                             </p>
-                            {/* Lógica dos botões de status (mantida como estava) */}
+                            
+                            {/* Lógica dos botões de status */}
                             {pedido.status_atual === "Entregue" ? (
                                 <button className="entregue" disabled>✓ Entregue</button>
                             ) : pedido.status_atual === "A caminho" ? (
