@@ -5,7 +5,6 @@ import './ContPedidos.css';
 function ContPedidos() {
     const [produtoInput, setProdutoInput] = useState('');
     const [descricaoProdutoInput, setDescricaoProdutoInput] = useState('');
-    const [valorProdutoInput, setValorProdutoInput] = useState(''); 
     const [pagamentoSelecionado, setPagamentoSelecionado] = useState('Crédito');
     const [pedidos, setPedidos] = useState([]);
     const [observacoesDoPedido, setObservacoesDoPedido] = useState('');
@@ -42,10 +41,7 @@ function ContPedidos() {
             alert("Por favor, preencha o produto e a descrição.");
             return;
         }
-        if (!valorProdutoInput || isNaN(parseFloat(valorProdutoInput)) || parseFloat(valorProdutoInput) <= 0) {
-            alert("Por favor, informe um valor de pedido válido.");
-            return;
-        }
+  
 
         const payloadObservacoes = observacoesDoPedido.trim() || 'N/A';
 
@@ -53,7 +49,6 @@ function ContPedidos() {
             cliente_id: selectedClienteId,
             produto: produtoInput.trim(),
             descricao: descricaoProdutoInput.trim(),
-            valor_produto: parseFloat(valorProdutoInput).toFixed(2), // Adicionado
             observacoes: payloadObservacoes,
             forma_pagamento: pagamentoSelecionado,
         };
@@ -63,7 +58,6 @@ function ContPedidos() {
             alert("Pedido enviado com sucesso!");
             setProdutoInput(''); 
             setDescricaoProdutoInput('');
-            setValorProdutoInput(''); // Limpar o campo de valor
             setObservacoesDoPedido('');
             setPagamentoSelecionado('Crédito');
             fetchPedidosCliente(); 
@@ -89,19 +83,6 @@ function ContPedidos() {
                     <input
                         id="descricaoProduto" type="text" placeholder="Estabelecimento, quantidade, etc."
                         value={descricaoProdutoInput} onChange={(e) => setDescricaoProdutoInput(e.target.value)} required 
-                    />
-
-                    {/* NOVO CAMPO DE VALOR */}
-                    <label htmlFor="valorProduto">Valor do Pedido (R$):</label>
-                    <input
-                        id="valorProduto"
-                        type="number"
-                        placeholder="Ex: 50.00"
-                        value={valorProdutoInput}
-                        onChange={(e) => setValorProdutoInput(e.target.value)}
-                        required
-                        step="0.01"
-                        min="0.01"
                     />
 
                     <label htmlFor="observacoes">Observações do Pedido:</label>
