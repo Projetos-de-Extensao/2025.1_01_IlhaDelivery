@@ -5,7 +5,7 @@ from .models import (
     Entregadores, 
     StatusPedido)
 
-# ... (ClienteSerializer, EntregadoresSerializer, StatusPedidoSerializer) ...
+
 
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,7 +50,6 @@ class PedidoSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = [
             'id', 'data_pedido', 'pago', 'cliente',
-            # --- CAMPOS CALCULADOS DEVEM SER APENAS LEITURA ---
             'taxa_servico', 'valor_total'
         ]
 

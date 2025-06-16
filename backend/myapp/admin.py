@@ -21,7 +21,7 @@ class PedidoAdmin(admin.ModelAdmin):
             'fields': ('entregador', 'forma_pagamento', 'pago')
         }),
     )
-    readonly_fields = ('taxa_servico', 'valor_total',) # Campos calculados não devem ser editáveis
+    readonly_fields = ('taxa_servico', 'valor_total',) 
 
 
 admin.site.register(Pedido, PedidoAdmin)
